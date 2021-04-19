@@ -1,0 +1,10 @@
+package test;
+import grafix.interfaceGraphique.IG;
+
+public class MaDemoIG {
+
+	public void demoGraphique() {
+		Object parametres[];
+		parametres=IG.saisirParametres();
+	}
+}

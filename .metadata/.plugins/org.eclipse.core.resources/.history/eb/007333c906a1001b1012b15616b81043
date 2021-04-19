@@ -1,0 +1,6 @@
+package test;
+import grafix.interfaceGraphique.IG;
+
+public class MaDemoIG {
+
+}
