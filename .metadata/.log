@@ -1,0 +1,9 @@
+!SESSION 2021-04-19 13:00:49.082 -----------------------------------------------
+eclipse.buildId=4.14.0.v20191219-0358
+java.version=15.0.1
+java.vendor=Red Hat, Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=fr_FR
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2021-04-19 13:10:43.171
+!MESSAGE Invalid preference category path: org.jboss.tools.common.model.ui.MainPreferencePage (bundle: org.jboss.tools.usage, page: org.jboss.tools.usage.analytics.preferences.UsageAnalyticsPreferencePage)
