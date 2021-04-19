@@ -23,12 +23,12 @@ public class MaDemoIG {
 		};
 		IG.afficherMessage(message); 
 		IG.miseAJourAffichage(); 
+		IG.attendreClic(); 
 		
-		for (int i=0;i<7;i++) {
-			for (int j=0;j<7;j++) {
-				IG.changerPiecePlateau(i,j,2,0);// 2 premiers coordonnées, 3e la piece,4e la rotation
-				IG.miseAJourAffichage();
-			}}
+		for (int i=0;i<7)
+		IG.changerPiecePlateau(0,0,2,3);// 2 premiers coordonnées, 3e la piece,4e la rotation
+		IG.miseAJourAffichage();
+		IG.attendreClic();
 		
 		
 		int numImageJoueur0=((Integer)parametres[3]).intValue();
@@ -100,25 +100,8 @@ public class MaDemoIG {
 		IG.selectionnerPiecePlateau(2,3);
 		IG.miseAJourAffichage();
 		IG.attendreClic();
-		
-		//Faire les 4 rotations
-		for (int l=0;l<=4;l++) {
-			for (int i=0;i<7;i++) {
-				for (int j=0;j<7;j++) {
-					
-					if (l==4) {
-						IG.changerPiecePlateau(i,j,2,0);// 2 premiers coordonnées, 3e la piece,4e la rotation
-						IG.miseAJourAffichage();
-						
-					}
-					else {
-						
-					IG.changerPiecePlateau(i,j,2,l);// 2 premiers coordonnées, 3e la piece,4e la rotation
-					IG.miseAJourAffichage();
-					}
-				}}
-				IG.attendreClic();}
-
+				
+	
 		
 		
 		IG.changerPieceHorsPlateau(2,2);
