@@ -8,7 +8,7 @@ public class MaDemoIG {
 		Object parametres[];
 		parametres=IG.saisirParametres();
 		int nbJoueurs=((Integer)parametres[0]).intValue(); 
-		IG.creerFenetreJeu("Démo Librairie IG version 1.9",nbJoueurs);
+		IG.creerFenetreJeu("Demo Librairie IG version 1.9",nbJoueurs);
 		IG.rendreVisibleFenetreJeu(); 
 		IG.jouerUnSon(2); 
 		IG.pause(300); 
@@ -17,7 +17,7 @@ public class MaDemoIG {
 		
 		String message[]={
 					"",
-					"Démo Librairie Graphique 1.9...	",
+					"Demo Librairie Graphique 1.9...	",
 					"Cliquer pour continuer ...",
 					""
 		};
@@ -145,11 +145,11 @@ public class MaDemoIG {
 		IG.afficherMessage(message);
 		IG.miseAJourAffichage();
 		int choixPiece[]=IG.attendreChoixPiece();
-		System.out.println("Pièce sélectionnée : ("+choixPiece[0]+","+choixPiece[1]+")");
+		System.out.println("Pièce selectionnee : ("+choixPiece[0]+","+choixPiece[1]+")");
 			
 		
 		message[0]="";
-		message[1]="C'est terminé !";
+		message[1]="C'est termine !";
 		message[2]="Cliquer pour quitter ...";
 		message[3]="";
 		IG.afficherMessage(message);
