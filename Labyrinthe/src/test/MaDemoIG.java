@@ -12,8 +12,26 @@ public class MaDemoIG {
 		IG.rendreVisibleFenetreJeu(); 
 		IG.jouerUnSon(2); 
 		IG.pause(300); 
-		IG.jouerUnSon(2); 
+		IG.jouerUnSon(2);
 		
+		int numImageJoueur0=((Integer)parametres[3]).intValue();
+		int numImageJoueur1=((Integer)parametres[3+(1*3)]).intValue();
+		int numImageJoueur2=((Integer)parametres[3+(2*3)]).intValue();
+		String nomJoueur0=(String)parametres[1];
+		String nomJoueur1=(String)parametres[1];
+		String nomJoueur2=(String)parametres[1];
+		String categorieJoueur0=(String)parametres[2];
+		String categorieJoueur1=(String)parametres[2];
+		String categorieJoueur2=(String)parametres[2];
+		IG.attendreClic();
+		IG.changerNomJoueur(0, nomJoueur0+" ("+categorieJoueur0+")");
+		IG.changerNomJoueur(1, nomJoueur1+" ("+categorieJoueur1+")");
+		IG.changerNomJoueur(2, nomJoueur2+" ("+categorieJoueur2+")");
+		IG.changerImageJoueur(0,numImageJoueur0);
+		IG.changerImageJoueur(1,numImageJoueur1);
+		IG.changerImageJoueur(2,numImageJoueur2);
+		IG.miseAJourAffichage();
+		IG.attendreClic();
 		
 		String message[]={
 					"",
@@ -27,39 +45,38 @@ public class MaDemoIG {
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {
 				IG.changerPiecePlateau(i,j,2,0);// 2 premiers coordonnées, 3e la piece,4e la rotation
-				IG.miseAJourAffichage();
 			}}
 		
 		
-		int numImageJoueur0=((Integer)parametres[3]).intValue();
-		String nomJoueur0=(String)parametres[1];
-		String categorieJoueur0=(String)parametres[2];
-		IG.attendreClic();
-		IG.changerNomJoueur(0, nomJoueur0+" ("+categorieJoueur0+")");
-		IG.changerImageJoueur(0,numImageJoueur0);
-		IG.miseAJourAffichage();
-		IG.attendreClic();
 		
-	
-	
-		for (int i=0;i<4;i++){
+
+	//placer les objets des joueurs
+		for (int i=0;i<6;i++){
 			IG.changerObjetJoueur(0,i,i);
-			IG.changerObjetJoueur(1,i+7,i);
+			IG.changerObjetJoueur(1,i+6,i);
+			IG.changerObjetJoueur(2,i+12,i);
 		}
-		for (int i=4;i<6;i++){
-			IG.changerObjetJoueurAvecTransparence(0,i,i);
-			IG.changerObjetJoueurAvecTransparence(1,i+7,i);
-		}
+		
+		//placer les objets sur le plateau
+		int numObjet=0;
+		for (int i=0;i<7;i++) // nombre de ligne 
+			for (int j=0;j<7;j++)//nombre de colonne
+				if(numObjet<18) {
+				IG.placerObjetPlateau((numObjet++)%18,i,j);
+				};
 		IG.miseAJourAffichage();
 		IG.attendreClic();
 		
+		IG.miseAJourAffichage();
+		IG.attendreClic();
 		
+		/*
 		int numObjet=0;
 		for (int i=0;i<7;i++)
 			for (int j=0;j<7;j++)
 				IG.placerObjetPlateau((numObjet++)%18,i,j);
 		IG.miseAJourAffichage();
-		IG.attendreClic();
+		IG.attendreClic();*/
 		
 	
 		IG.changerObjetSelectionne(2);
