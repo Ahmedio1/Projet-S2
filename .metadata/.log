@@ -193,3 +193,8 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY org.eclipse.core.resources 2 10035 2021-04-22 14:45:47.593
 !MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.resources 2 2 2021-04-22 14:50:53.604
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2021-04-22 14:50:53.604
+!MESSAGE The project description file (.project) for 'Labyrinthe' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
