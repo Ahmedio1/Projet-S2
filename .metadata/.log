@@ -184,3 +184,12 @@ Caused by: java.io.FileNotFoundException: /home/Daoud/Documents/PROJETS2/.metada
 	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:123)
 	at org.eclipse.swt.graphics.ImageLoader.save(ImageLoader.java:604)
 	... 12 more
+!SESSION 2021-04-22 14:45:43.838 -----------------------------------------------
+eclipse.buildId=4.14.0.v20191219-0358
+java.version=15.0.1
+java.vendor=Red Hat, Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=fr_FR
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2021-04-22 14:45:47.593
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
