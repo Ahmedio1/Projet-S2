@@ -8,7 +8,7 @@ public class MaDemoIG {
 		Object parametres[];
 		parametres=IG.saisirParametres();
 		int nbJoueurs=((Integer)parametres[0]).intValue(); 
-		IG.creerFenetreJeu("Demo Librairie IG version 1.9",nbJoueurs);
+		IG.creerFenetreJeu("Groupe Projet S2 Demo Librairie",nbJoueurs);
 		IG.rendreVisibleFenetreJeu(); 
 		IG.jouerUnSon(2); 
 		IG.pause(300); 
@@ -42,10 +42,10 @@ public class MaDemoIG {
 		IG.changerImageJoueur(2,numImageJoueur2);
 		IG.miseAJourAffichage();
 		
-		// placer les pièces 2 de type 0
+		// placer les pieces 2 de type 0
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {
-				IG.changerPiecePlateau(i,j,2,0);// 2 premiers coordonnées, 3e la piece,4e la rotation
+				IG.changerPiecePlateau(i,j,2,0);// 2 premiers coordonnees, 3e la piece,4e la rotation
 			}}
 		//Piece hors plateau
 		IG.changerPieceHorsPlateau(1,0);
@@ -79,7 +79,7 @@ public class MaDemoIG {
 		//rotation
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {				
-					IG.changerPiecePlateau(i,j,2,1);// 2 premiers coordonnées, 3e la piece,4e la rotation
+					IG.changerPiecePlateau(i,j,2,1);// 2 premiers coordonnees, 3e la piece,4e la rotation
 			}}
 		//deplacement vers le centre
 		IG.placerJoueurPrecis(0,3,0,1,1);
@@ -90,7 +90,7 @@ public class MaDemoIG {
 		//message
 		String messageclic1[]={
 				"",
-				"Après 1er clic	",
+				"Apres 1er clic	",
 				"Cliquer pour continuer ...",
 				""
 		};
@@ -109,7 +109,7 @@ public class MaDemoIG {
 		//rotation
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {				
-					IG.changerPiecePlateau(i,j,2,2);// 2 premiers coordonnées, 3e la piece,4e la rotation
+					IG.changerPiecePlateau(i,j,2,2);// 2 premiers coordonnees, 3e la piece,4e la rotation
 			}}
 		//deplacement vers le centre
 		IG.placerJoueurPrecis(0,3,0,1,2);
@@ -120,7 +120,7 @@ public class MaDemoIG {
 		//message
 		String messageclic2[]={
 				"",
-				"Après 2eme clic	",
+				"Apres 2eme clic	",
 				"Cliquer pour continuer ...",
 				""
 		};
@@ -140,7 +140,7 @@ public class MaDemoIG {
 		//rotation
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {				
-					IG.changerPiecePlateau(i,j,2,3);// 2 premiers coordonnées, 3e la piece,4e la rotation
+					IG.changerPiecePlateau(i,j,2,3);// 2 premiers coordonnees, 3e la piece,4e la rotation
 			}}
 		//deplacement vers le centre
 		IG.placerJoueurPrecis(0,3,1,1,0);
@@ -151,7 +151,7 @@ public class MaDemoIG {
 		//message
 		String messageclic3[]={
 				"",
-				"Après 3eme clic	",
+				"Apres 3eme clic	",
 				"Cliquer pour continuer ...",
 				""
 		};
@@ -170,7 +170,7 @@ public class MaDemoIG {
 		//rotation
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {				
-					IG.changerPiecePlateau(i,j,2,0);// 2 premiers coordonnées, 3e la piece,4e la rotation
+					IG.changerPiecePlateau(i,j,2,0);// 2 premiers coordonnees, 3e la piece,4e la rotation
 			}}
 		//deplacement vers le centre
 		IG.placerJoueurPrecis(0,3,1,1,1);
@@ -181,7 +181,7 @@ public class MaDemoIG {
 		//message
 		String messageclic4[]={
 				"",
-				"Après 4eme clic	",
+				"Apres 4eme clic	",
 				"Cliquer pour continuer ...",
 				""
 	};
