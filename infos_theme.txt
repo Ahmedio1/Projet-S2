@@ -1,0 +1,3 @@
+Theme Pop Culture
+A.Daoud,C.Delcourt,S.Shakuri,P.Plouvin
+{"Holy Mental","Undertale's Bone","Roto's shield","Meat Boy's pad","Holy water","Rapid fire canon","Tanjiro's box","Keyblade","Ball","Spider web","MediEvil's Emblem","Leviathan","Aja's red stone","Ultraball","Hattori's bow","Blue shell","Tony Stark reactor","Blood potion"} 
