@@ -29,8 +29,8 @@
 		<item key="pageIndex" value="3"/>
 	</section>
 	<section name="JavadocWizardDialog">
-		<item key="DIALOG_X_ORIGIN" value="48"/>
-		<item key="DIALOG_Y_ORIGIN" value="13"/>
+		<item key="DIALOG_X_ORIGIN" value="-126"/>
+		<item key="DIALOG_Y_ORIGIN" value="-230"/>
 		<item key="DIALOG_WIDTH" value="606"/>
 		<item key="DIALOG_HEIGHT" value="622"/>
 		<item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
@@ -53,8 +53,13 @@
 		<item key="openinbrowser" value="false"/>
 		<item key="source" value="14"/>
 		<item key="antpath" value="/home/Daoud/Documents/PROJET2/Labyrinthe/javadoc.xml"/>
-		<item key="destdir" value="/home/Daoud/Documents/PROJET2/docIG19"/>
+		<item key="destdir" value="/home/Daoud/Documents/PROJET2/Labyrinthe/doc"/>
 		<section name="projects">
+			<section name="Labyrinthe">
+				<item key="href" value=""/>
+				<item key="destdir" value="/home/Daoud/Documents/PROJET2/Labyrinthe/doc"/>
+				<item key="antpath" value="/home/Daoud/Documents/PROJET2/Labyrinthe/javadoc.xml"/>
+			</section>
 		</section>
 	</section>
 </section>
