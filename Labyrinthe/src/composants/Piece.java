@@ -1,5 +1,5 @@
 package composants;
-
+import java.util.Random;
 /**
  * 
  * Cette classe permet de représenter les différentes pièces du jeu.
@@ -89,7 +89,7 @@ abstract public class Piece {
 	}
 	
 	/**
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (27/04/2021 CD/PP/AD Finalis�e)
 	 * 
 	 * Méthode permettant de créer un tableau contenant toutes les pièces du jeu (les 50 pièces).
 	 * Le tableau contiendra 20 pièces du modèle 0, 12 pièces du modèle 1 et 18 pièces du modèle 2.
@@ -97,8 +97,37 @@ abstract public class Piece {
 	 * @return Un tableau contenant toutes les pièces du jeu.
 	 */
 	public static Piece[] nouvellesPieces(){
-		Piece pieces[]=null;
-		// A Compléter (A Faire après les classes PieceM0, PieceM1 et PieceM2)
+		Piece pieces[]=new Piece[50];
+		for (int i=0;i<20;i++) {
+			PieceM0 p=new PieceM0();
+			//cr�ation d'un nb random entre 0 et 3
+			Random r=new Random();
+			int nb=0+r.nextInt(3-0);
+			//orientation en fonction du nb random
+			p.setOrientation(nb);
+			//attribution du de la piece avec l'orientation random
+			pieces[i]=p;
+		}
+		for (int i=20;i<32;i++) {
+			PieceM1 p=new PieceM1();
+			//cr�ation d'un nb random entre 0 et 3
+			Random r=new Random();
+			int nb=0+r.nextInt(3-0);
+			//orientation en fonction du nb random
+			p.setOrientation(nb);
+			//attribution du de la piece avec l'orientation random
+			pieces[i]=p;
+		}
+		for (int i=32;i<50;i++) {
+			PieceM2 p=new PieceM2();
+			//cr�ation d'un nb random entre 0 et 3
+			Random r=new Random();
+			int nb=0+r.nextInt(3-0);
+			//orientation en fonction du nb random
+			p.setOrientation(nb);
+			//attribution du de la piece avec l'orientation random
+			pieces[i]=p;
+		}
 		return pieces;
 	}
 	
@@ -107,4 +136,5 @@ abstract public class Piece {
 	 * @return Une copie de la pièce.
 	 */
 	public abstract Piece copy();
+	
 }
