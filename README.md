@@ -6,4 +6,4 @@ A l'aide de mon IDE j'ai créé le projet `PROJETS2` dans le répertoire `/Docum
 Création branche ahmedEtape2.
 
 * Ajout Etape 1 : sprites, infos et Code.
-* Etape 2 : Ajout Class Utils.
+* Etape 2 : Ajout Class Utils. Création Documentation.
