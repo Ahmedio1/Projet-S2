@@ -41,22 +41,35 @@ abstract public class Piece {
 	}
 	
 	/**
-	 * A Faire (27/04/2021 CD/PP Finalis�e)
+	 * A Faire (29/04/2021 CD Finalis�e)
 	 * 
 	 * Méthode permettant de rotationner une pièce dans le sens d'une horloge.
 	 */
 	public void rotation(){
-		orientationPiece+=1%4;
+		orientationPiece+=1;
+		orientationPiece=orientationPiece%4;
+		boolean t=pointsEntree[0];
+		pointsEntree[0]=pointsEntree[3];
+		pointsEntree[3]=pointsEntree[2];
+		pointsEntree[2]=pointsEntree[1];
+		pointsEntree[1]=t;
 	}
 	
 	/**
-	 * A Faire (27/04/2021 CD/PP Finalis�e)
+	 * A Faire (29/04/2021 CD Finalis�e)
 	 * 
 	 * Méthode permettant d'orienter une pièce vers une orientation spécifique.
 	 * @param orientationPiece Un entier correspondant �  la nouvelle orientation de la pièce.
 	 */
 	public void setOrientation(int orientationPiece){
 		this.orientationPiece=orientationPiece;
+		boolean t=pointsEntree[0];
+		for (int i=0;i<orientationPiece;i++) {
+		pointsEntree[0]=pointsEntree[3];
+		pointsEntree[3]=pointsEntree[2];
+		pointsEntree[2]=pointsEntree[1];
+		pointsEntree[1]=t;
+		}
 	}
 
 	/**

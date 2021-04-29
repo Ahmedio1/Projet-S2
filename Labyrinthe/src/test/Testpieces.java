@@ -23,6 +23,7 @@ public class Testpieces {
 	IG.miseAJourAffichage();
 	IG.attendreClic();
 	
+	//remplissage du tableau
 	Piece[] piece;
 	piece=Piece.nouvellesPieces();	
 	for (int i=0;i<7;i++) {
@@ -33,12 +34,28 @@ public class Testpieces {
 	IG.changerPieceHorsPlateau(piece[49].getModelePiece(),piece[49].getOrientationPiece());
 	IG.miseAJourAffichage();
 	IG.attendreClic();
-	for (int i=0;i<7;i++) {
-		for (int j=0;j<7;j++) {
-			
+	
+	//4 rotations
+	for (int nbRota=0;nbRota<4;nbRota++) {
+		for (int i=0;i<piece.length;i++) {
+			piece[i].rotation();
 			}
+		for (int i=0;i<7;i++) {
+			for (int j=0;j<7;j++) {
+				IG.changerPiecePlateau(i,j,piece[7*i+j].getModelePiece(),piece[7*i+j].getOrientationPiece());						
+				}
+			}
+		IG.changerPieceHorsPlateau(piece[49].getModelePiece(),piece[49].getOrientationPiece());
+		IG.miseAJourAffichage();
+		System.out.println("[m:"+piece[49].getModelePiece()+"|o:"+piece[49].getOrientationPiece()+"|pe:"+piece[49].getPointEntree(0)+" "+piece[49].getPointEntree(1)+" "+piece[49].getPointEntree(2)+" "+piece[49].getPointEntree(3)+"]");
+		IG.attendreClic();
 		}
+	
+	IG.fermerFenetreJeu();
+	System.exit(0);
 	}
+	
+	
 	public static void main(String[] args) {
 		
 		Testpieces demo = new Testpieces();
