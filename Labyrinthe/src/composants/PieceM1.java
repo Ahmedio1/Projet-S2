@@ -8,7 +8,7 @@ package composants;
 public class PieceM1 extends Piece {
 
 	/**
-	 * A Faire (27/04/2021 CD/PP Finalis�e)
+	 * A Faire (27/04/2021 CD/PP Finalis�e)
 	 * 
 	 * Constructeur permettant de construire une pièce de modèle 1 et d'orientation 0.
 	 */
@@ -17,7 +17,7 @@ public class PieceM1 extends Piece {
 		super(1,true,false,true,false); 
 	}
 	/**
-	 * A Faire (27/04/2021 CD/PP Finalis�e(peut-etre))
+	 * A Faire (27/04/2021 CD/PP Finalis�e(peut-etre))
 	 * 
 	 * Méthode permettant de créer une copie de la pièce (un nouvelle objet Java).
 	 * @return Une copie de la pièce.

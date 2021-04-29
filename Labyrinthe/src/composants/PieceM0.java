@@ -6,9 +6,8 @@ package composants;
  *
  */
 public class PieceM0 extends Piece {
-
 	/**
-	 * A Faire (27/04/2021 CD/PP Finalis�e)
+	 * A Faire (27/04/2021 CD/PP Finalis�e)
 	 * 
 	 * Constructeur permettant de construire une pièce de modèle 0 et d'orientation 0.
 	 */
@@ -16,7 +15,7 @@ public class PieceM0 extends Piece {
 		super(0,false,true,true,false); 
 	}
 	/**
-	 * A Faire (27/04/2021 CD/PP Finalis�e(peut-�tre))
+	 * A Faire (27/04/2021 CD/PP Finalis�e(peut-�tre))
 	 * 
 	 * Méthode permettant de créer une copie de la pièce (un nouvelle objet Java).
 	 * @return Une copie de la pièce.
@@ -24,5 +23,9 @@ public class PieceM0 extends Piece {
 	public Piece copy(){
 		Piece piece=this.copy();
 		return piece;
+
 	}
+	
+	
+	
 }
