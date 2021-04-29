@@ -16,13 +16,13 @@ public class PieceM0 extends Piece {
 		super(0,false,true,true,false); 
 	}
 	/**
-	 * A Faire (27/04/2021 CD/PP FinalisÈe(peut-Ítre))
+	 * A Faire (29/04/2021 CD/PP FinalisÈe)
 	 * 
 	 * M√©thode permettant de cr√©er une copie de la pi√®ce (un nouvelle objet Java).
 	 * @return Une copie de la pi√®ce.
 	 */
 	public Piece copy(){
-		Piece piece=this.copy();
+		PieceM0 piece=this;
 		return piece;
 	}
 }
