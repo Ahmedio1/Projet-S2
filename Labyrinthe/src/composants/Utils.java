@@ -21,7 +21,6 @@ public class Utils {
 	 * @return Un nombre entier compris entre 0 et max (inclus).
 	 */
 	public static int genererEntier(int max){
-		Random random = new Random();
 		int nb;
 		nb =0+generateur.nextInt(max-0);		
 		return nb;
