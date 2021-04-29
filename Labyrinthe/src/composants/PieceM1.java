@@ -17,13 +17,13 @@ public class PieceM1 extends Piece {
 		super(1,true,false,true,false); 
 	}
 	/**
-	 * A Faire (27/04/2021 CD/PP Finalis�e(peut-etre))
+	 * A Faire (29/04/2021 CD/PP Finalis�e)
 	 * 
 	 * Méthode permettant de créer une copie de la pièce (un nouvelle objet Java).
 	 * @return Une copie de la pièce.
 	 */
 	public Piece copy(){
-		Piece piece=this.copy();
+		PieceM1 piece=this;
 		return piece;
 	}
 }
