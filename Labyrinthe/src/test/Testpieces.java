@@ -23,6 +23,8 @@ public class Testpieces {
 	IG.miseAJourAffichage();
 	IG.attendreClic();
 	
+	// A Faire (29/04/2021 CD Finalise)
+	
 	//remplissage du tableau
 	Piece[] piece;
 	piece=Piece.nouvellesPieces();	
