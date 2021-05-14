@@ -108,12 +108,18 @@ public class Objet {
 
 	/**
 	 * 
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (14/05/2021 SS finalise)
 	 * 
 	 * Méthode permettant d'enlever l'objet du plateau.
+	 * @param posLignePlateau 
+	 * @param posColonnePlateau 
 	 * 
 	 */
 	public void enleveDuPlateau(){
+		this.posLignePlateau=-1;
+		this.posColonnePlateau=-1;
+		this.surPlateau=false;
+		
 		
 	}
 	
