@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="libIG19.jar"/>
+	<classpathentry kind="lib" path="libIG20.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
