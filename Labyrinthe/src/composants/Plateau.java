@@ -1,5 +1,7 @@
 package composants;
 
+import java.util.ArrayList;
+
 /**
  * Cette classe permet de gerer un plateau de jeu constitue d'une grille de pieces (grille de 7 lignes sur 7 colonnes).
  *
@@ -61,12 +63,11 @@ public class Plateau {
 		piece=Piece.nouvellesPieces();	
 		int[] utils;
 		utils=Utils.genereTabIntAleatoirement(50);
-		int c=-1,l=-1;
-		for (int i=0;i<50;i++) {
-			plateau[l++][c++]=piece[utils[i]];	
+		for (int i=0;i<49;i++) {
+			plateau[i/7][i%7]=piece[utils[i]];
 		}
 		
-		return piece[utils[50]];
+		return piece[utils[49]];
 	}
 
 	/**
@@ -137,8 +138,89 @@ public class Plateau {
 	 */
 	public int[][] calculeChemin(int posLigCaseDep,int posColCaseDep,int posLigCaseArr,int posColCaseArr){
 		int resultat[][]=null;
-		
-		// A Completer
+		int LigneActuel=posLigCaseDep;
+		int ColActuel=posColCaseDep;
+		int[][] tab = new int[7][7];
+		int compteur=-1;
+		int nbCase=0;
+		boolean dessus=false,droite=false,dessous=false,gauche=false;
+		ArrayList<int[][]> possibleWays=new ArrayList<>();
+		boolean trouve=false;
+		while (trouve==false) {
+			if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=0) {
+				tab[LigneActuel][ColActuel]=1;
+				LigneActuel=LigneActuel-1;
+				compteur=1;
+				nbCase++;
+			}
+			else if ((passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1))==true&&tab[LigneActuel][ColActuel+1]!=0) {
+				tab[LigneActuel][ColActuel]=1;
+				ColActuel++;
+				compteur=2;
+				nbCase++;
+			}
+			else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=0){
+				tab[LigneActuel][ColActuel]=1;
+				LigneActuel=LigneActuel+1;
+				compteur=3;
+				nbCase++;
+			}
+			else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=0) {
+				tab[LigneActuel][ColActuel]=1;
+				ColActuel=ColActuel-1;
+				compteur=4;
+				nbCase++;
+			}
+			
+			else {
+				if (compteur==4) {
+					tab[LigneActuel][ColActuel]=0;
+					ColActuel++;
+					nbCase--;
+				}
+				if (compteur==3) {
+					tab[LigneActuel][ColActuel]=0;
+					LigneActuel--;
+					nbCase--;
+				}
+				if (compteur==2) {
+					tab[LigneActuel][ColActuel]=0;
+					ColActuel--;
+					nbCase--;
+				}
+				if (compteur==1) {
+					tab[LigneActuel][ColActuel]=0;
+					LigneActuel++;
+					nbCase--;
+				}
+			}
+			if (LigneActuel==posLigCaseDep-1)dessus=true;
+			if (passageEntreCases(posLigCaseDep,posColCaseDep,posLigCaseDep-1,posColCaseDep)==false)dessus=true;
+			
+			if (LigneActuel==posColCaseDep+1)droite=true;
+			if ((passageEntreCases(posLigCaseDep,posColCaseDep,posLigCaseDep,posColCaseDep+1))==false)droite=true;
+			
+			if (LigneActuel==posLigCaseDep+1)dessous=true;
+			if (passageEntreCases(posLigCaseDep,posColCaseDep,posLigCaseDep+1,posColCaseDep)==false)dessous=true;
+			
+			if (LigneActuel==posColCaseDep-1)gauche=true;
+			if (passageEntreCases(posLigCaseDep,posColCaseDep,posLigCaseDep,posColCaseDep-1)==false)gauche=true;
+			
+			if (LigneActuel==posLigCaseArr&&ColActuel==posColCaseArr) {
+				possibleWays.add(tab);
+			}
+			if (nbCase==0 && dessus && droite && dessous && gauche)trouve=true;
+			System.out.println(LigneActuel);
+			
+		}
+		int min=49;
+		int indice=0;
+		for (int i=0;i<possibleWays.size();i++) {
+			if (possibleWays.get(i).length<=min)min=possibleWays.get(i).length;
+			indice=i;
+		}
+		if (possibleWays.size()!=0)resultat=possibleWays.get(indice);
+		else resultat=null;
 		
 		return resultat;
 	}
