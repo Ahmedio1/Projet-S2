@@ -119,8 +119,6 @@ public class Objet {
 		this.posLignePlateau=-1;
 		this.posColonnePlateau=-1;
 		this.surPlateau=false;
-		
-		
 	}
 	
 	/**
