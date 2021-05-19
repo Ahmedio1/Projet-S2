@@ -1,7 +1,6 @@
 package composants;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Cette classe permet de gerer un plateau de jeu constitue d'une grille de pieces (grille de 7 lignes sur 7 colonnes).
@@ -138,6 +137,10 @@ public class Plateau {
 	 * @return null si il n'existe pas de chemin entre les deux case, un chemin sinon.
 	 */
 	public int[][] calculeChemin(int posLigCaseDep,int posColCaseDep,int posLigCaseArr,int posColCaseArr){
+		//test que l'on ne se dirige pas vers la case de départ
+		if (posLigCaseDep==posLigCaseArr && posColCaseDep==posColCaseArr)return null;
+		
+		
 		int resultat[][]=new int[49][];
 		resultat[0]=new int[] {posLigCaseDep,posColCaseDep};
 		int der=0;
@@ -169,6 +172,7 @@ public class Plateau {
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					LigneActuel++;
+					
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=1&&tab[LigneActuel][ColActuel-1]!=2) {
 					tab[LigneActuel][ColActuel]=1;
@@ -185,19 +189,19 @@ public class Plateau {
 					der--;
 					LigneActuel--;
 				}
-				else if ((passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1))==true&&tab[LigneActuel-1][ColActuel]!=2) {
+				else if ((passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1))==true&&tab[LigneActuel][ColActuel+1]!=2) {
 					tab[LigneActuel][ColActuel]=2;
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					der--;
 					ColActuel++;
 				}
-				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=2) {
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=2;
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					der--;
 					LigneActuel++;
 				}
-				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel-1][ColActuel]!=2) {
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=2) {
 					tab[LigneActuel][ColActuel]=2;
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					der--;
@@ -217,27 +221,36 @@ public class Plateau {
 			
 			//rencontre d'une intersection
 			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
-					&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel-1][ColActuel]!=2))finChemin=false;
+					&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel-1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
 			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
-					&&(tab[LigneActuel-1][ColActuel]!=2||tab[LigneActuel+1][ColActuel]!=2))finChemin=false;
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true
-					&&(tab[LigneActuel][ColActuel-1]!=2||tab[LigneActuel-1][ColActuel]!=2))finChemin=false;
+					&&(tab[LigneActuel-1][ColActuel]!=2||tab[LigneActuel+1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
+					&&(tab[LigneActuel][ColActuel-1]!=2||tab[LigneActuel-1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true)finChemin=false;
 			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
-					&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel+1][ColActuel]!=2))finChemin=false;
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true
-					&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel][ColActuel-1]!=2))finChemin=false;
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true
-					&&(tab[LigneActuel][ColActuel-1]!=2||tab[LigneActuel+1][ColActuel]!=2))finChemin=false;
+					&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel+1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
+			
+			
+			int millis = 1000;
+
+			try {
+			    Thread.sleep(millis);
+			} catch (InterruptedException ie) {
+			    // ...
+			}
+			System.out.println(LigneActuel+" "+ColActuel);
+			System.out.println(der);
+			System.out.println("-------------------------");
 			
 			
 			if(LigneActuel==lPre && ColActuel==cPre)return null;
 			if (posLigCaseArr==LigneActuel && posColCaseArr==ColActuel) {
 				trouve=true;//Un chemin a ete trouve
 				resultat[der]=new int[] {LigneActuel,ColActuel};
+				return resultat;
 			}
-			
-			
+
 		}
+		
 		
 		
 		return resultat;
