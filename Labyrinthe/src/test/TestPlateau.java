@@ -5,7 +5,7 @@ import grafix.interfaceGraphique.IG;
 
 public class TestPlateau {
 	
-	public void TestPlateau() {
+	public void testPlateau() {
 		Object parametres[];
 		parametres=IG.saisirParametres();
 		int nbJoueurs=((Integer)parametres[0]).intValue();
@@ -77,6 +77,6 @@ public class TestPlateau {
 		
 		TestPlateau demo = new TestPlateau();
 		
-		demo.TestPlateau();
+		demo.testPlateau();
 	}
 }

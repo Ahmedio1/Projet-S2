@@ -1,6 +1,5 @@
 package composants;
 
-import grafix.interfaceGraphique.IG;
 
 /**
  * 
