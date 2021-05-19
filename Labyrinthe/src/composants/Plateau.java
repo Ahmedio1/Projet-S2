@@ -157,80 +157,72 @@ public class Plateau {
 			if (finChemin==false){
 				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=1&&tab[LigneActuel-1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=1;
-					System.out.println(LigneActuel+" "+ColActuel);
-					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel));
+
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					LigneActuel--;
-					System.out.println(LigneActuel+" "+ColActuel);
+
 					
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true&&tab[LigneActuel][ColActuel+1]!=1&&tab[LigneActuel][ColActuel+1]!=2) {
 					tab[LigneActuel][ColActuel]=1;
-					System.out.println(LigneActuel+" "+ColActuel);
-					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1));
+
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					ColActuel++;
-					System.out.println(LigneActuel+" "+ColActuel);
+
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=1&&tab[LigneActuel+1][ColActuel]!=2){
 					tab[LigneActuel][ColActuel]=1;
-					System.out.println(LigneActuel+" "+ColActuel);
-					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel));
+
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					LigneActuel++;
-					System.out.println(LigneActuel+" "+ColActuel);
+
 					
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=1 && tab[LigneActuel][ColActuel-1]!=2) {
 					tab[LigneActuel][ColActuel]=1;
-					System.out.println(LigneActuel+" "+ColActuel);
-					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1));
+
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					ColActuel--;
-					System.out.println(LigneActuel+" "+ColActuel);
+
 				}
 			}
 				
 			else {
 				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=2;
-					System.out.println(LigneActuel+" "+ColActuel);
-					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel));
+
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					if (der!=0)der--;
 					LigneActuel--;
-					System.out.println(LigneActuel+" "+ColActuel);
+
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true&&tab[LigneActuel][ColActuel+1]!=2) {
 					tab[LigneActuel][ColActuel]=2;
-					System.out.println(LigneActuel+" "+ColActuel);
-					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1));
+
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					if (der!=0)der--;
 					ColActuel++;
-					System.out.println(LigneActuel+" "+ColActuel);
+
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=2;
-					System.out.println(LigneActuel+" "+ColActuel);
-					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel));
+
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					if (der!=0)der--;
 					LigneActuel++;
-					System.out.println(LigneActuel+" "+ColActuel);
+
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=2) {
 					tab[LigneActuel][ColActuel]=2;
-					System.out.println(LigneActuel+" "+ColActuel);
-					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1));
+
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					if (der!=0)der--;
 					ColActuel--;
-					System.out.println(LigneActuel+" "+ColActuel);
+
 				}
 			}
 			
@@ -247,19 +239,19 @@ public class Plateau {
 			//rencontre d'une intersection
 			if (LigneActuel!=0&&ColActuel!=0||LigneActuel!=7&&ColActuel!=7||LigneActuel!=0&&ColActuel!=7||LigneActuel!=7&&ColActuel!=0) {
 				
-				if (ColActuel!=6) {
+				if (ColActuel!=6&&LigneActuel!=0) {
 					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
 							&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel-1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
 				}
-				if(LigneActuel!=6) {
+				if(LigneActuel!=6&&LigneActuel!=0) {
 					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
 							&&(tab[LigneActuel-1][ColActuel]!=2||tab[LigneActuel+1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
 				}
-				if (LigneActuel!=0) {
+				if (LigneActuel!=0&&ColActuel!=0) {
 					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
 							&&(tab[LigneActuel][ColActuel-1]!=2||tab[LigneActuel-1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true)finChemin=false;
 				}
-				if (ColActuel!=0) {
+				if (ColActuel!=6&&LigneActuel!=6) {
 					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
 							&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel+1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
 				}
@@ -275,9 +267,9 @@ public class Plateau {
 			} catch (InterruptedException ie) {
 			    // ...
 			}
-			*/
-			System.out.println("-------------------------");
 			
+			System.out.println("-------------------------");
+			*/
 			
 			
 			if(LigneActuel==lPre && ColActuel==cPre)return null;
@@ -297,16 +289,18 @@ public class Plateau {
 	//méthode permettant de supprimer un element d'un tableau egale au parametre donne
 	private static int[][] delElement(int[][] tab,int[] element){
 		for (int i=0;i<tab.length;i++) {
-			if (tab[i]==element) {
-				for (int j=i;j<tab.length-1;j++) {
-					tab[j]=tab[j+1];
+			if (tab[i]!=null) {
+				if (tab[i][0]==element[0]&&tab[i][1]==element[1]) {
+					for (int j=i;j<tab.length-1;j++) {
+						tab[j]=tab[j+1];
+					}
+					int ind=i;
+					for (int k=i;k<tab.length;k++) {
+						if (tab[k]!=null)ind=k;
+					tab[ind]=null;
+					}
 				}
-				int ind=i;
-				for (int k=i;k<tab.length;k++) {
-					if (tab[k]!=null)ind=k;
-				tab[ind]=null;
-				}
-			}
+		}
 		}
 		return tab;
 	}
