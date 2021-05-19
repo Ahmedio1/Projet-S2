@@ -1,6 +1,7 @@
 package composants;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Cette classe permet de gerer un plateau de jeu constitue d'une grille de pieces (grille de 7 lignes sur 7 colonnes).
@@ -137,81 +138,135 @@ public class Plateau {
 	 * @return null si il n'existe pas de chemin entre les deux case, un chemin sinon.
 	 */
 	public int[][] calculeChemin(int posLigCaseDep,int posColCaseDep,int posLigCaseArr,int posColCaseArr){
-		int resultat[][]=null;
+		int resultat[][]=new int[49][];
+		resultat[0]=new int[] {posLigCaseDep,posColCaseDep};
+		int der=0;
 		int LigneActuel=posLigCaseDep;
 		int ColActuel=posColCaseDep;
 		int[][] tab = new int[7][7];
-		int compteur=-1;
-		boolean dessus=false,droite=false,dessous=false,gauche=false;
-		ArrayList<int[][]> possibleWays=new ArrayList<>();
 		boolean trouve=false;
 		boolean finChemin=false;
+		int lPre, cPre;
 		while (trouve==false) {
-			if (finChemin=false){
+			lPre=LigneActuel;
+			cPre=ColActuel;
+			
+			if (finChemin==false){
 				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=1&&tab[LigneActuel-1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=1;
-					LigneActuel=LigneActuel-1;
+					resultat[der]=new int[] {LigneActuel,ColActuel};
+					der++;
+					LigneActuel--;
 				}
-				else if ((passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1))==true&&tab[LigneActuel][ColActuel+1]!=1&&tab[LigneActuel-1][ColActuel]!=2) {
+				else if ((passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1))==true&&tab[LigneActuel][ColActuel+1]!=1&&tab[LigneActuel][ColActuel+1]!=2) {
 					tab[LigneActuel][ColActuel]=1;
+					resultat[der]=new int[] {LigneActuel,ColActuel};
+					der++;
 					ColActuel++;
 				}
-				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=1&&tab[LigneActuel-1][ColActuel]!=2){
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=1&&tab[LigneActuel+1][ColActuel]!=2){
 					tab[LigneActuel][ColActuel]=1;
-					LigneActuel=LigneActuel+1;
+					resultat[der]=new int[] {LigneActuel,ColActuel};
+					der++;
+					LigneActuel++;
 				}
-				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=1&&tab[LigneActuel-1][ColActuel]!=2) {
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=1&&tab[LigneActuel][ColActuel-1]!=2) {
 					tab[LigneActuel][ColActuel]=1;
-					ColActuel=ColActuel-1;
+					resultat[der]=new int[] {LigneActuel,ColActuel};
+					der++;
+					ColActuel--;
 				}
 			}
 				
 			else {
 				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=2;
-					LigneActuel=LigneActuel-1;
-				}
-				if (compteur==3) {
-					tab[LigneActuel][ColActuel]=0;
+					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
+					der--;
 					LigneActuel--;
 				}
-				if (compteur==2) {
-					tab[LigneActuel][ColActuel]=0;
-					ColActuel--;
+				else if ((passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1))==true&&tab[LigneActuel-1][ColActuel]!=2) {
+					tab[LigneActuel][ColActuel]=2;
+					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
+					der--;
+					ColActuel++;
 				}
-				if (compteur==1) {
-					tab[LigneActuel][ColActuel]=0;
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=2) {
+					tab[LigneActuel][ColActuel]=2;
+					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
+					der--;
 					LigneActuel++;
+				}
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel-1][ColActuel]!=2) {
+					tab[LigneActuel][ColActuel]=2;
+					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
+					der--;
+					ColActuel--;
 				}
 			}
 			
 			//Check si on vient d'arriver a la fin d'un chemin
 			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
-					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel-1][ColActuel]==1)finChemin=false;
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel-1][ColActuel]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
 			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false
-					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel+1][ColActuel]==1)finChemin=false;
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel+1][ColActuel]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
 			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
-					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel][ColActuel-1]==1)finChemin=false;
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel][ColActuel-1]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
 			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
-					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && tab[LigneActuel][ColActuel+1]==1)finChemin=false;
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && tab[LigneActuel][ColActuel+1]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
+			
+			//rencontre d'une intersection
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
+					&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel-1][ColActuel]!=2))finChemin=false;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
+					&&(tab[LigneActuel-1][ColActuel]!=2||tab[LigneActuel+1][ColActuel]!=2))finChemin=false;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true
+					&&(tab[LigneActuel][ColActuel-1]!=2||tab[LigneActuel-1][ColActuel]!=2))finChemin=false;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
+					&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel+1][ColActuel]!=2))finChemin=false;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true
+					&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel][ColActuel-1]!=2))finChemin=false;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true
+					&&(tab[LigneActuel][ColActuel-1]!=2||tab[LigneActuel+1][ColActuel]!=2))finChemin=false;
 			
 			
-			if (posLigCaseArr==LigneActuel && posColCaseArr==ColActuel)trouve=true; //Un chemin a ete trouve
+			if(LigneActuel==lPre && ColActuel==cPre)return null;
+			if (posLigCaseArr==LigneActuel && posColCaseArr==ColActuel) {
+				trouve=true;//Un chemin a ete trouve
+				resultat[der]=new int[] {LigneActuel,ColActuel};
+			}
+			
 			
 		}
-		int min=49;
-		int indice=0;
-		for (int i=0;i<possibleWays.size();i++) {
-			if (possibleWays.get(i).length<=min)min=possibleWays.get(i).length;
-			indice=i;
-		}
-		if (possibleWays.size()!=0)resultat=possibleWays.get(indice);
-		else resultat=null;
+		
 		
 		return resultat;
 	}
 
-
+	//méthode permettant de supprimer un element d'un tableau egale au parametre donne
+	private static int[][] delElement(int[][] tab,int[] element){
+		for (int i=0;i<tab.length;i++) {
+			if (tab[i]==element) {
+				for (int j=i;j<tab.length-1;j++) {
+					tab[j]=tab[j+1];
+				}
+				tab[-1]=null;
+			}
+		}
+		return tab;
+	}
+	
+	//methode permettant d'afficher les element contenu dans le tableau
+	public String toString(int[][] tab) {
+		if (tab==null)return("null");
+		else {
+			String a="";
+			for (int i=0;tab[i]!=null;i++) {
+				a+=("("+tab[i][0]+","+tab[i][1]+")");
+			}
+			return a;
+		}
+	}
 
 	/**
 	 * 

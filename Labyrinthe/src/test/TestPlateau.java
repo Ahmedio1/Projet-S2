@@ -38,7 +38,8 @@ public class TestPlateau {
 		IG.attendreClic();
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {
-				System.out.println("Chemin entre les cases (3,3) et ("+i+","+j+") : "+plateau.calculeChemin(3, 3, i, j));
+				int[][] a=plateau.calculeChemin(3, 3, i, j);
+				System.out.println("Chemin entre les cases (3,3) et ("+i+","+j+") : "+ plateau.toString(a));
 			}
 		}
 	}
