@@ -305,7 +305,7 @@ public class Plateau {
 		return tab;
 	}
 	
-	//methode permettant d'afficher les element contenu dans le tableau
+	//methode permettant de retourner en String les element contenu dans le tableau
 	public String toString(int[][] tab) {
 		if (tab==null)return("null");
 		else {
