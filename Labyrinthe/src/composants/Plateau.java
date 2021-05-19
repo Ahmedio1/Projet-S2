@@ -157,55 +157,80 @@ public class Plateau {
 			if (finChemin==false){
 				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=1&&tab[LigneActuel-1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=1;
+					System.out.println(LigneActuel+" "+ColActuel);
+					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel));
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					LigneActuel--;
+					System.out.println(LigneActuel+" "+ColActuel);
+					
 				}
-				else if ((passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1))==true&&tab[LigneActuel][ColActuel+1]!=1&&tab[LigneActuel][ColActuel+1]!=2) {
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true&&tab[LigneActuel][ColActuel+1]!=1&&tab[LigneActuel][ColActuel+1]!=2) {
 					tab[LigneActuel][ColActuel]=1;
+					System.out.println(LigneActuel+" "+ColActuel);
+					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1));
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					ColActuel++;
+					System.out.println(LigneActuel+" "+ColActuel);
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=1&&tab[LigneActuel+1][ColActuel]!=2){
 					tab[LigneActuel][ColActuel]=1;
+					System.out.println(LigneActuel+" "+ColActuel);
+					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel));
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					LigneActuel++;
+					System.out.println(LigneActuel+" "+ColActuel);
 					
 				}
-				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=1&&tab[LigneActuel][ColActuel-1]!=2) {
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=1 && tab[LigneActuel][ColActuel-1]!=2) {
 					tab[LigneActuel][ColActuel]=1;
+					System.out.println(LigneActuel+" "+ColActuel);
+					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1));
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					ColActuel--;
+					System.out.println(LigneActuel+" "+ColActuel);
 				}
 			}
 				
 			else {
 				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=2;
+					System.out.println(LigneActuel+" "+ColActuel);
+					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel));
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
-					der--;
+					if (der!=0)der--;
 					LigneActuel--;
+					System.out.println(LigneActuel+" "+ColActuel);
 				}
-				else if ((passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1))==true&&tab[LigneActuel][ColActuel+1]!=2) {
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true&&tab[LigneActuel][ColActuel+1]!=2) {
 					tab[LigneActuel][ColActuel]=2;
+					System.out.println(LigneActuel+" "+ColActuel);
+					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1));
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
-					der--;
+					if (der!=0)der--;
 					ColActuel++;
+					System.out.println(LigneActuel+" "+ColActuel);
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=2;
+					System.out.println(LigneActuel+" "+ColActuel);
+					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel));
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
-					der--;
+					if (der!=0)der--;
 					LigneActuel++;
+					System.out.println(LigneActuel+" "+ColActuel);
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=2) {
 					tab[LigneActuel][ColActuel]=2;
+					System.out.println(LigneActuel+" "+ColActuel);
+					System.out.println(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1));
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
-					der--;
+					if (der!=0)der--;
 					ColActuel--;
+					System.out.println(LigneActuel+" "+ColActuel);
 				}
 			}
 			
@@ -220,16 +245,29 @@ public class Plateau {
 					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && tab[LigneActuel][ColActuel+1]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
 			
 			//rencontre d'une intersection
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
-					&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel-1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
-					&&(tab[LigneActuel-1][ColActuel]!=2||tab[LigneActuel+1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
-					&&(tab[LigneActuel][ColActuel-1]!=2||tab[LigneActuel-1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true)finChemin=false;
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
-					&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel+1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
+			if (LigneActuel!=0&&ColActuel!=0||LigneActuel!=7&&ColActuel!=7||LigneActuel!=0&&ColActuel!=7||LigneActuel!=7&&ColActuel!=0) {
+				
+				if (ColActuel!=6) {
+					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
+							&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel-1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
+				}
+				if(LigneActuel!=6) {
+					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
+							&&(tab[LigneActuel-1][ColActuel]!=2||tab[LigneActuel+1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
+				}
+				if (LigneActuel!=0) {
+					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
+							&&(tab[LigneActuel][ColActuel-1]!=2||tab[LigneActuel-1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true)finChemin=false;
+				}
+				if (ColActuel!=0) {
+					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
+							&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel+1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
+				}
+			}
 			
 			
+			if (LigneActuel==posLigCaseDep&&ColActuel==posColCaseDep)finChemin=false;
+			/*
 			int millis = 1000;
 
 			try {
@@ -237,9 +275,9 @@ public class Plateau {
 			} catch (InterruptedException ie) {
 			    // ...
 			}
-			System.out.println(LigneActuel+" "+ColActuel);
-			System.out.println(der);
+			*/
 			System.out.println("-------------------------");
+			
 			
 			
 			if(LigneActuel==lPre && ColActuel==cPre)return null;
@@ -263,7 +301,11 @@ public class Plateau {
 				for (int j=i;j<tab.length-1;j++) {
 					tab[j]=tab[j+1];
 				}
-				tab[-1]=null;
+				int ind=i;
+				for (int k=i;k<tab.length;k++) {
+					if (tab[k]!=null)ind=k;
+				tab[ind]=null;
+				}
 			}
 		}
 		return tab;
