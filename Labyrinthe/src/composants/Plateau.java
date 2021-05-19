@@ -1,5 +1,7 @@
 package composants;
 
+
+
 /**
  * Cette classe permet de gerer un plateau de jeu constitue d'une grille de pieces (grille de 7 lignes sur 7 colonnes).
  *
@@ -61,12 +63,11 @@ public class Plateau {
 		piece=Piece.nouvellesPieces();	
 		int[] utils;
 		utils=Utils.genereTabIntAleatoirement(50);
-		int c=-1,l=-1;
-		for (int i=0;i<50;i++) {
-			plateau[l++][c++]=piece[utils[i]];	
+		for (int i=0;i<49;i++) {
+			plateau[i/7][i%7]=piece[utils[i]];
 		}
 		
-		return piece[utils[50]];
+		return piece[utils[49]];
 	}
 
 	/**
@@ -136,14 +137,185 @@ public class Plateau {
 	 * @return null si il n'existe pas de chemin entre les deux case, un chemin sinon.
 	 */
 	public int[][] calculeChemin(int posLigCaseDep,int posColCaseDep,int posLigCaseArr,int posColCaseArr){
-		int resultat[][]=null;
+		//test que l'on ne se dirige pas vers la case de départ
+		if (posLigCaseDep==posLigCaseArr && posColCaseDep==posColCaseArr)return null;
 		
-		// A Completer
+		
+		int resultat[][]=new int[49][];
+		resultat[0]=new int[] {posLigCaseDep,posColCaseDep};
+		int der=0;
+		int LigneActuel=posLigCaseDep;
+		int ColActuel=posColCaseDep;
+		int[][] tab = new int[7][7];
+		boolean trouve=false;
+		boolean finChemin=false;
+		int lPre, cPre;
+		while (trouve==false) {
+			lPre=LigneActuel;
+			cPre=ColActuel;
+			
+			if (finChemin==false){
+				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=1&&tab[LigneActuel-1][ColActuel]!=2) {
+					tab[LigneActuel][ColActuel]=1;
+
+					resultat[der]=new int[] {LigneActuel,ColActuel};
+					der++;
+					LigneActuel--;
+
+					
+				}
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true&&tab[LigneActuel][ColActuel+1]!=1&&tab[LigneActuel][ColActuel+1]!=2) {
+					tab[LigneActuel][ColActuel]=1;
+
+					resultat[der]=new int[] {LigneActuel,ColActuel};
+					der++;
+					ColActuel++;
+
+				}
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=1&&tab[LigneActuel+1][ColActuel]!=2){
+					tab[LigneActuel][ColActuel]=1;
+
+					resultat[der]=new int[] {LigneActuel,ColActuel};
+					der++;
+					LigneActuel++;
+
+					
+				}
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=1 && tab[LigneActuel][ColActuel-1]!=2) {
+					tab[LigneActuel][ColActuel]=1;
+
+					resultat[der]=new int[] {LigneActuel,ColActuel};
+					der++;
+					ColActuel--;
+
+				}
+			}
+				
+			else {
+				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=2) {
+					tab[LigneActuel][ColActuel]=2;
+
+					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
+					if (der!=0)der--;
+					LigneActuel--;
+
+				}
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true&&tab[LigneActuel][ColActuel+1]!=2) {
+					tab[LigneActuel][ColActuel]=2;
+
+					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
+					if (der!=0)der--;
+					ColActuel++;
+
+				}
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=2) {
+					tab[LigneActuel][ColActuel]=2;
+
+					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
+					if (der!=0)der--;
+					LigneActuel++;
+
+				}
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=2) {
+					tab[LigneActuel][ColActuel]=2;
+
+					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
+					if (der!=0)der--;
+					ColActuel--;
+
+				}
+			}
+			
+			//Check si on vient d'arriver a la fin d'un chemin
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel-1][ColActuel]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel+1][ColActuel]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel][ColActuel-1]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && tab[LigneActuel][ColActuel+1]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
+			
+			//rencontre d'une intersection
+			if (LigneActuel!=0&&ColActuel!=0||LigneActuel!=7&&ColActuel!=7||LigneActuel!=0&&ColActuel!=7||LigneActuel!=7&&ColActuel!=0) {
+				
+				if (ColActuel!=6&&LigneActuel!=0) {
+					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
+							&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel-1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
+				}
+				if(LigneActuel!=6&&LigneActuel!=0) {
+					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
+							&&(tab[LigneActuel-1][ColActuel]!=2||tab[LigneActuel+1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
+				}
+				if (LigneActuel!=0&&ColActuel!=0) {
+					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true
+							&&(tab[LigneActuel][ColActuel-1]!=2||tab[LigneActuel-1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true)finChemin=false;
+				}
+				if (ColActuel!=6&&LigneActuel!=6) {
+					if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true
+							&&(tab[LigneActuel][ColActuel+1]!=2||tab[LigneActuel+1][ColActuel]!=2)&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true)finChemin=false;
+				}
+			}
+			
+			
+			if (LigneActuel==posLigCaseDep&&ColActuel==posColCaseDep)finChemin=false;
+			/*
+			int millis = 1000;
+
+			try {
+			    Thread.sleep(millis);
+			} catch (InterruptedException ie) {
+			    // ...
+			}
+			
+			System.out.println("-------------------------");
+			*/
+			
+			
+			if(LigneActuel==lPre && ColActuel==cPre)return null;
+			if (posLigCaseArr==LigneActuel && posColCaseArr==ColActuel) {
+				trouve=true;//Un chemin a ete trouve
+				resultat[der]=new int[] {LigneActuel,ColActuel};
+				return resultat;
+			}
+
+		}
+		
+		
 		
 		return resultat;
 	}
 
-
+	//méthode permettant de supprimer un element d'un tableau egale au parametre donne
+	private static int[][] delElement(int[][] tab,int[] element){
+		for (int i=0;i<tab.length;i++) {
+			if (tab[i]!=null) {
+				if (tab[i][0]==element[0]&&tab[i][1]==element[1]) {
+					for (int j=i;j<tab.length-1;j++) {
+						tab[j]=tab[j+1];
+					}
+					int ind=i;
+					for (int k=i;k<tab.length;k++) {
+						if (tab[k]!=null)ind=k;
+					tab[ind]=null;
+					}
+				}
+		}
+		}
+		return tab;
+	}
+	
+	//methode permettant de retourner en String les element contenu dans le tableau
+	public String toString(int[][] tab) {
+		if (tab==null)return("null");
+		else {
+			String a="";
+			for (int i=0;tab[i]!=null;i++) {
+				a+=("("+tab[i][0]+","+tab[i][1]+")");
+			}
+			return a;
+		}
+	}
 
 	/**
 	 * 

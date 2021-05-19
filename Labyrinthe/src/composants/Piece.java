@@ -63,12 +63,12 @@ abstract public class Piece {
 	 */
 	public void setOrientation(int orientationPiece){
 		this.orientationPiece=orientationPiece;
-		boolean t=pointsEntree[0];
 		for (int i=0;i<orientationPiece;i++) {
-		pointsEntree[0]=pointsEntree[3];
-		pointsEntree[3]=pointsEntree[2];
-		pointsEntree[2]=pointsEntree[1];
-		pointsEntree[1]=t;
+			boolean t=pointsEntree[0];
+			pointsEntree[0]=pointsEntree[3];
+			pointsEntree[3]=pointsEntree[2];
+			pointsEntree[2]=pointsEntree[1];
+			pointsEntree[1]=t;
 		}
 	}
 
