@@ -142,75 +142,61 @@ public class Plateau {
 		int ColActuel=posColCaseDep;
 		int[][] tab = new int[7][7];
 		int compteur=-1;
-		int nbCase=0;
 		boolean dessus=false,droite=false,dessous=false,gauche=false;
 		ArrayList<int[][]> possibleWays=new ArrayList<>();
 		boolean trouve=false;
+		boolean finChemin=false;
 		while (trouve==false) {
-			if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=0) {
-				tab[LigneActuel][ColActuel]=1;
-				LigneActuel=LigneActuel-1;
-				compteur=1;
-				nbCase++;
-			}
-			else if ((passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1))==true&&tab[LigneActuel][ColActuel+1]!=0) {
-				tab[LigneActuel][ColActuel]=1;
-				ColActuel++;
-				compteur=2;
-				nbCase++;
-			}
-			else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=0){
-				tab[LigneActuel][ColActuel]=1;
-				LigneActuel=LigneActuel+1;
-				compteur=3;
-				nbCase++;
-			}
-			else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=0) {
-				tab[LigneActuel][ColActuel]=1;
-				ColActuel=ColActuel-1;
-				compteur=4;
-				nbCase++;
-			}
-			
-			else {
-				if (compteur==4) {
-					tab[LigneActuel][ColActuel]=0;
+			if (finChemin=false){
+				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=1&&tab[LigneActuel-1][ColActuel]!=2) {
+					tab[LigneActuel][ColActuel]=1;
+					LigneActuel=LigneActuel-1;
+				}
+				else if ((passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1))==true&&tab[LigneActuel][ColActuel+1]!=1&&tab[LigneActuel-1][ColActuel]!=2) {
+					tab[LigneActuel][ColActuel]=1;
 					ColActuel++;
-					nbCase--;
+				}
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=1&&tab[LigneActuel-1][ColActuel]!=2){
+					tab[LigneActuel][ColActuel]=1;
+					LigneActuel=LigneActuel+1;
+				}
+				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=1&&tab[LigneActuel-1][ColActuel]!=2) {
+					tab[LigneActuel][ColActuel]=1;
+					ColActuel=ColActuel-1;
+				}
+			}
+				
+			else {
+				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=2) {
+					tab[LigneActuel][ColActuel]=2;
+					LigneActuel=LigneActuel-1;
 				}
 				if (compteur==3) {
 					tab[LigneActuel][ColActuel]=0;
 					LigneActuel--;
-					nbCase--;
 				}
 				if (compteur==2) {
 					tab[LigneActuel][ColActuel]=0;
 					ColActuel--;
-					nbCase--;
 				}
 				if (compteur==1) {
 					tab[LigneActuel][ColActuel]=0;
 					LigneActuel++;
-					nbCase--;
 				}
 			}
-			if (LigneActuel==posLigCaseDep-1)dessus=true;
-			if (passageEntreCases(posLigCaseDep,posColCaseDep,posLigCaseDep-1,posColCaseDep)==false)dessus=true;
 			
-			if (LigneActuel==posColCaseDep+1)droite=true;
-			if ((passageEntreCases(posLigCaseDep,posColCaseDep,posLigCaseDep,posColCaseDep+1))==false)droite=true;
+			//Check si on vient d'arriver a la fin d'un chemin
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel-1][ColActuel]==1)finChemin=false;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel+1][ColActuel]==1)finChemin=false;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel][ColActuel-1]==1)finChemin=false;
+			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
+					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && tab[LigneActuel][ColActuel+1]==1)finChemin=false;
 			
-			if (LigneActuel==posLigCaseDep+1)dessous=true;
-			if (passageEntreCases(posLigCaseDep,posColCaseDep,posLigCaseDep+1,posColCaseDep)==false)dessous=true;
 			
-			if (LigneActuel==posColCaseDep-1)gauche=true;
-			if (passageEntreCases(posLigCaseDep,posColCaseDep,posLigCaseDep,posColCaseDep-1)==false)gauche=true;
-			
-			if (LigneActuel==posLigCaseArr&&ColActuel==posColCaseArr) {
-				possibleWays.add(tab);
-			}
-			if (nbCase==0 && dessus && droite && dessous && gauche)trouve=true;
-			System.out.println(LigneActuel);
+			if (posLigCaseArr==LigneActuel && posColCaseArr==ColActuel)trouve=true; //Un chemin a ete trouve
 			
 		}
 		int min=49;
