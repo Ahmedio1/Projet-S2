@@ -155,9 +155,9 @@ public class Plateau {
 			cPre=ColActuel;
 			
 			if (finChemin==false){
+				//avance vers des cases jamais explore
 				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=1&&tab[LigneActuel-1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=1;
-
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					LigneActuel--;
@@ -166,7 +166,6 @@ public class Plateau {
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true&&tab[LigneActuel][ColActuel+1]!=1&&tab[LigneActuel][ColActuel+1]!=2) {
 					tab[LigneActuel][ColActuel]=1;
-
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					ColActuel++;
@@ -174,7 +173,6 @@ public class Plateau {
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=1&&tab[LigneActuel+1][ColActuel]!=2){
 					tab[LigneActuel][ColActuel]=1;
-
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					LigneActuel++;
@@ -183,7 +181,6 @@ public class Plateau {
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=1 && tab[LigneActuel][ColActuel-1]!=2) {
 					tab[LigneActuel][ColActuel]=1;
-
 					resultat[der]=new int[] {LigneActuel,ColActuel};
 					der++;
 					ColActuel--;
@@ -192,9 +189,9 @@ public class Plateau {
 			}
 				
 			else {
+				//reviens en arriere sur des cases deja explore
 				if (passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==true&&tab[LigneActuel-1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=2;
-
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					if (der!=0)der--;
 					LigneActuel--;
@@ -202,7 +199,6 @@ public class Plateau {
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==true&&tab[LigneActuel][ColActuel+1]!=2) {
 					tab[LigneActuel][ColActuel]=2;
-
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					if (der!=0)der--;
 					ColActuel++;
@@ -210,7 +206,6 @@ public class Plateau {
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==true&&tab[LigneActuel+1][ColActuel]!=2) {
 					tab[LigneActuel][ColActuel]=2;
-
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					if (der!=0)der--;
 					LigneActuel++;
@@ -218,7 +213,6 @@ public class Plateau {
 				}
 				else if (passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==true&&tab[LigneActuel][ColActuel-1]!=2) {
 					tab[LigneActuel][ColActuel]=2;
-
 					resultat=delElement(resultat,new int[] {LigneActuel,ColActuel});
 					if (der!=0)der--;
 					ColActuel--;
@@ -259,17 +253,6 @@ public class Plateau {
 			
 			
 			if (LigneActuel==posLigCaseDep&&ColActuel==posColCaseDep)finChemin=false;
-			/*
-			int millis = 1000;
-
-			try {
-			    Thread.sleep(millis);
-			} catch (InterruptedException ie) {
-			    // ...
-			}
-			
-			System.out.println("-------------------------");
-			*/
 			
 			
 			if(LigneActuel==lPre && ColActuel==cPre)return null;
