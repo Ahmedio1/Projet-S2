@@ -120,7 +120,7 @@ public class Plateau {
 
 	/**
 	 * 
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (AD,CD,PP 19/05/2021 Finis)
 	 * 
 	 * Methode permettant de retourner un eventuel chemin entre deux cases du plateau compte tenu des pieces posees sur le plateau.
 	 * Dans le cas ou il n'y a pas de chemin entre les deux cases, la valeur null est retournee.
