@@ -146,8 +146,8 @@ public abstract class Joueur {
 	 */
 	public void setObjetsJoueur(Objet objetsARecuperer[]){
 		Objet tabRecup[];
-		tabRecup = new Objet[8];
-		for(int i=0;i<100;i++) {
+		tabRecup = new Objet[9];
+		for(int i=0;i<9;i++) {
 			tabRecup[i]=objetsARecuperer[i];	
 		}
 		
@@ -163,8 +163,8 @@ public abstract class Joueur {
 	 */
 	public Objet[] getObjetsJoueur(){
 		Objet resultat[];
-		resultat = new Objet[8];
-		for(int i=0;i<100;i++) {
+		resultat = new Objet[9];
+		for(int i=0;i<9;i++) {
 			resultat[i]=this.objetsJoueur[i];	
 		}
 	
@@ -181,13 +181,12 @@ public abstract class Joueur {
 	 * @return Le prochain objet à  recuperer par le joueur.
 	 */
 	public Objet getProchainObjet(){
-		der++;
-		return this.objetsJoueur[der];
+		return this.objetsJoueur[nombreObjetsRecuperes];
 	}
 	
 	/**
 	 * 
-	 * A Faire (Quand Qui Statut)
+	 * A Faire (AD le 20/05/2021 Finis)
 	 * 
 	 * Methode permettant de recuperer un nouvel objet. Cette methode incremente simplement de 1 le nombre d'objets qui ont ete recuperes.
 	 */
