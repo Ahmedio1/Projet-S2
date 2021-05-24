@@ -221,14 +221,29 @@ public class Plateau {
 			}
 			
 			//Check si on vient d'arriver a la fin d'un chemin
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
-					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel-1][ColActuel]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false
-					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel+1][ColActuel]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
-					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false && tab[LigneActuel][ColActuel-1]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
-			if(passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false && passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false
-					&& passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false && tab[LigneActuel][ColActuel+1]==1&&tab[LigneActuel][ColActuel]!=1)finChemin=true;
+			if(der==0 || passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false &&
+					passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false &&
+					passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false &&
+					tab[LigneActuel-1][ColActuel]==1&&
+					tab[LigneActuel][ColActuel]!=1)finChemin=true;
+			
+			if(der==0 || passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false &&
+					passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false &&
+					passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false &&
+					tab[LigneActuel+1][ColActuel]==1&&
+					tab[LigneActuel][ColActuel]!=1)finChemin=true;
+			
+			if(der==0 || passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false &&
+					passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false &&
+					passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel+1)==false &&
+					tab[LigneActuel][ColActuel-1]==1&&
+					tab[LigneActuel][ColActuel]!=1)finChemin=true;
+			
+			if(der==0 || passageEntreCases(LigneActuel,ColActuel,LigneActuel-1,ColActuel)==false &&
+					passageEntreCases(LigneActuel,ColActuel,LigneActuel+1,ColActuel)==false &&
+					passageEntreCases(LigneActuel,ColActuel,LigneActuel,ColActuel-1)==false &&
+					tab[LigneActuel][ColActuel+1]==1&&
+					tab[LigneActuel][ColActuel]!=1)finChemin=true;
 			
 			//rencontre d'une intersection
 			if (LigneActuel!=0&&ColActuel!=0||LigneActuel!=7&&ColActuel!=7||LigneActuel!=0&&ColActuel!=7||LigneActuel!=7&&ColActuel!=0) {

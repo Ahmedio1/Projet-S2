@@ -18,7 +18,6 @@ public abstract class Joueur {
 	private int nombreObjetsRecuperes; // le nombre d'objets recuperes
 	private int posLigne; // La ligne correspondant Ã  la position du joueur sur le plateau
 	private int posColonne; // La colonne correspondant Ã  la position du joueur sur le plateau
-	private int der=-1;
 	/**
 	 * A Faire (AD le 20/05/2021 Finis)
 	 * 
