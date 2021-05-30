@@ -59,7 +59,7 @@ public class ElementsPartie {
     }
 
     /**
-     * A Faire (ss 31/05/2021 fini)
+     * A Faire (ss 30/05/2021 fini)
      *
      * MÃ©thode permettant d'attribuer les objets aux diffÃ©rents joueurs de maniÃ¨re alÃ©atoire.
      */
@@ -92,7 +92,7 @@ public class ElementsPartie {
     }
 
     /**
-     * A Faire (ss 31/05/2021 fini)
+     * A Faire (ss 30/05/2021 fini)
      *
      * MÃ©thode permettant de rÃ©cupÃ©rer les joueurs de la partie.
      * @return Les joueurs de la partie.
@@ -114,7 +114,7 @@ public class ElementsPartie {
 
 
     /**
-     * A Faire (ss 31/05/2021 fini)
+     * A Faire (ss 30/05/2021 fini)
      *
      * MÃ©thode permettant de rÃ©cupÃ©rer le plateau de piÃ¨ces de la partie.
      * @return Le plateau de piÃ¨ces.
@@ -125,7 +125,7 @@ public class ElementsPartie {
 
 
     /**
-     * A Faire (ss 31/05/2021 fini)
+     * A Faire (ss 30/05/2021 fini)
      *
      * MÃ©thode permettant de rÃ©cupÃ©rer la piÃ¨ce libre de la partie.
      * @return La piÃ¨ce libre.
@@ -136,7 +136,7 @@ public class ElementsPartie {
 
 
     /**
-     * A Faire (ss 31/05/2021 fini)
+     * A Faire (ss 30/05/2021 fini)
      *
      * MÃ©thode permettant de rÃ©cupÃ©rer le nombre de joueurs de la partie.
      * @return Le nombre de joueurs.
@@ -148,7 +148,7 @@ public class ElementsPartie {
 
 
     /**
-     * A Faire (ss 31/05/2021 fini)
+     * A Faire (ss 30/05/2021 fini)
      *
      * MÃ©thode modifiant les diffÃ©rents Ã©lÃ©ments de la partie suite Ã  l'insertion de la piÃ¨ce libre dans le plateau.
      *
