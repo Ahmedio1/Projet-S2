@@ -148,44 +148,60 @@ public class ElementsPartie {
 
 
     /**
-     * A Faire (ss 30/05/2021 fini)
+     * A Faire (ss,AD 31/05/2021 fini)
      *
      * MÃ©thode modifiant les diffÃ©rents Ã©lÃ©ments de la partie suite Ã  l'insertion de la piÃ¨ce libre dans le plateau.
      *
      * @param choixEntree L'entrÃ©e choisie pour rÃ©aliser l'insertion (un nombre entre 0 et 27).
      */
     public void insertionPieceLibre(int choixEntree){
+    	Piece tab[] = new Piece[7];
         // Debut en haut a gauche vers en haut a droite et de haut en bas
         if (choixEntree<7){
             Piece tmp = plateau.getPiece(6,choixEntree);
-            for (int i = 0;i<=6;i++){
-                plateau.positionnePiece(plateau.getPiece(i,choixEntree),i+1,choixEntree);
+            for (int i = 0;i<6;i++){
+            	tab[i]=plateau.getPiece(i, choixEntree);
             }
-            plateau.positionnePiece(pieceLibre,0,choixEntree);
-            pieceLibre = tmp;
-        }else if ( choixEntree <14){
+            for (int i = 0;i<6;i++){
+            plateau.positionnePiece(tab[i],i+1,choixEntree);
+            }
+           plateau.positionnePiece(pieceLibre,0,choixEntree);
+           pieceLibre = tmp;
+            
+        }else if ( choixEntree >= 7 && choixEntree <14){
             // de haut en bas droite vers la gauche
             Piece tmp = plateau.getPiece(choixEntree-7,0);
+            for (int i = 6;i>=0;i--){
+                 tab[i]=plateau.getPiece((choixEntree-7),i);
+                 
+                 }
             for (int i = 6;i>0;i--){
-                plateau.positionnePiece(plateau.getPiece(choixEntree-7,i),choixEntree-7,i-1);
-            }
-            plateau.positionnePiece(pieceLibre,choixEntree-7,0);
+                 plateau.positionnePiece(tab[i],choixEntree-7,i-1);
+                 }
+            this.plateau.positionnePiece(pieceLibre,choixEntree-7,6);
             pieceLibre = tmp;
         } else if (choixEntree < 21) {
             // de droite a gauche et de bas en haut
-            Piece tmp = plateau.getPiece(6, choixEntree - 14);
-            for (int i = 6; i > 0; i--) {
-                plateau.positionnePiece(plateau.getPiece(i, choixEntree - 14), i - 1, choixEntree - 14);
+            Piece tmp = this.plateau.getPiece(6, 6-choixEntree%7);
+            for (int i = 6; i >=0; i--) {
+               tab[i]=plateau.getPiece(i, 6-choixEntree%7);
+              
             }
-            plateau.positionnePiece(pieceLibre, 0, choixEntree - 14);
-            pieceLibre = tmp;
+            for (int i = 6;i>0;i--){
+                plateau.positionnePiece(tab[i],i-1,6-choixEntree%7);
+                }
+            plateau.positionnePiece(pieceLibre, 6,6-choixEntree%7);
+            pieceLibre=tmp;
         }else{
             // bas en haut et de gauche a droite
-            Piece tmp = plateau.getPiece(choixEntree-21,0);
+            Piece tmp = plateau.getPiece(6-choixEntree%7,0);
             for (int i = 0;i<6;i++){
-                plateau.positionnePiece(plateau.getPiece(i,choixEntree),choixEntree-21,i-1);
+               tab[i]=plateau.getPiece(6-choixEntree%7,i);
             }
-            plateau.positionnePiece(pieceLibre,choixEntree-21,0);
+            for(int i=0;i<6;i++) {
+            	 plateau.positionnePiece(tab[i],6-choixEntree%7,i+1);
+            }
+            plateau.positionnePiece(pieceLibre,6-choixEntree%7,0);
             pieceLibre = tmp;
         }
     }
