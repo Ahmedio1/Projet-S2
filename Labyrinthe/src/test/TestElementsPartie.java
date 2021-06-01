@@ -52,10 +52,13 @@ public class TestElementsPartie {
 		IG.placerObjetPlateau(obj[i].getNumeroObjet(), obj[i].getPosLignePlateau(), obj[i].getPosColonnePlateau());
 		
 	}
-	for(int i=0;i<6;i++) {
-	IG.changerObjetJoueur(0,obj[i].getNumeroObjet(),i);
-	IG.changerObjetJoueur(1,obj[i+6].getNumeroObjet(),i);
-	IG.changerObjetJoueur(2,obj[i+12].getNumeroObjet(),i);}
+	
+	int nbObj=18/nbJoueurs;
+	for(int i=0;i<nbObj;i++) {
+		IG.changerObjetJoueur(0,obj[i].getNumeroObjet(),i);
+		IG.changerObjetJoueur(1,obj[i+nbObj].getNumeroObjet(),i);
+	if (nbJoueurs==3)IG.changerObjetJoueur(2,obj[i+nbObj*2].getNumeroObjet(),i);
+	}
 	IG.miseAJourAffichage();
 	IG.attendreClic();
 
