@@ -143,7 +143,7 @@ public abstract class Joueur {
 	 * 
 	 * @param objetsARecuperer Un tableau contenant les objets à  recuperer dans l'ordre.
 	 */
-	public static void setObjetsJoueur(Objet objetsARecuperer[]){
+	public void setObjetsJoueur(Objet objetsARecuperer[]){
 		Objet tabRecup[];
 		tabRecup = new Objet[6];
 		for(int i=0;i<6;i++) {
