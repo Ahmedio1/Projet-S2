@@ -22,7 +22,7 @@ public class ElementsPartie {
 
     /**
      *
-     * A Faire (SS 30/05/2021  fini)
+     * A Faire (SS,CD 01/06/2021  fini)
      *
      * Constructeur permettant de gÃ©nÃ©rer et d'initialiser l'ensemble des Ã©lÃ©ments d'une partie (sauf les joueurs qui sont donnÃ©s en paramÃ¨tres).
      *
@@ -36,10 +36,11 @@ public class ElementsPartie {
     public ElementsPartie(Joueur[] joueurs) {
         this.joueurs = joueurs;
         objets = Objet.nouveauxObjets();
-        Plateau plateau=new Plateau();
+        plateau=new Plateau();
         pieceLibre=plateau.placerPiecesAleatoierment();
         nombreJoueurs = joueurs.length;
-
+        //utilisation de la m�thode private attribuerObjetsAuxJoueurs() afin d'attribuer les objets aux diff�rents joueurs
+        this.attribuerObjetsAuxJoueurs();
     }
 
     /**
@@ -59,36 +60,32 @@ public class ElementsPartie {
     }
 
     /**
-     * A Faire (ss 30/05/2021 fini)
+     * A Faire (ss,CD 30/05/2021 fini)
      *
      * MÃ©thode permettant d'attribuer les objets aux diffÃ©rents joueurs de maniÃ¨re alÃ©atoire.
      */
     private void attribuerObjetsAuxJoueurs(){
-        int [] tabInt = Utils.genereTabIntAleatoirement(18);
-        Objet[] tabObjet = objets;
-        int nombreObjetParJoueur =18/ nombreJoueurs;
-        for (int i = 0;i<tabObjet.length;i++){
-            objets[i] = tabObjet[tabInt[i]];
+    	//cr�ation des des tableaux d'objet des 2 premiers joueurs
+    	//(il y a forcement 2 joueur minimum lors du lancement de la partie)
+        int nbObjParJoueur=objets.length/nombreJoueurs;
+        Objet[] objetsJ1 = new Objet[nbObjParJoueur];
+        Objet[] objetsJ2 = new Objet[nbObjParJoueur];
+        for (int i = 0; i<nbObjParJoueur;i++){
+            objetsJ1[i] = objets[i];
+            objetsJ2[i] = objets[i+nbObjParJoueur];
         }
-        if (nombreJoueurs >= 2){
-            Objet[] tabJ1 = new Objet[nombreObjetParJoueur];
-            Objet[] tabJ2 = new Objet[nombreObjetParJoueur];
-            for (int i = 0; i<nombreObjetParJoueur;i++){
-                tabJ1[i] = objets[i];
-                tabJ2[i] = objets[i+nombreObjetParJoueur];
-            }
-            joueurs[0].setObjetsJoueur(tabJ1);
-            joueurs[1].setObjetsJoueur(tabJ2);
-        }
+        //attribution des objets aux joueurs
+        joueurs[0].setObjetsJoueur(objetsJ1);
+        joueurs[1].setObjetsJoueur(objetsJ2);
+        
+        //cr�ation du tableau d'objet du troisieme joueur si ils sont 3 + attribution du tableau a celui-ci
         if (nombreJoueurs == 3){
-            Objet[] tabJ3 = new Objet[nombreObjetParJoueur];
-            for (int i = 0; i<nombreObjetParJoueur;i++){
-                tabJ3[i] = objets[i+(nombreObjetParJoueur*(nombreJoueurs-1))];
+            Objet[] objetsJ3 = new Objet[nbObjParJoueur];
+            for (int i = 0; i<nbObjParJoueur;i++){
+                objetsJ3[i] = objets[i+(nbObjParJoueur*2)];
             }
-            joueurs[2].setObjetsJoueur(tabJ3);
+            joueurs[2].setObjetsJoueur(objetsJ3);
         }
-        // A ComplÃ©ter
-
     }
 
     /**
