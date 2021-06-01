@@ -90,7 +90,6 @@ public class TestElementsPartie {
 	}
 	else if(IG.recupererModelePieceHorsPlateau()==1) {
 		Piece pieceHp = new PieceM1();
-		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
 		ElementsPartie obj1 = new ElementsPartie(joueurs,obj,plateau,pieceHp);
 		obj1.insertionPieceLibre(IG.attendreChoixEntree());
 		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
@@ -105,7 +104,6 @@ public class TestElementsPartie {
 	}
 	else if(IG.recupererModelePieceHorsPlateau()==2) {
 		Piece pieceHp = new PieceM2();
-		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
 		ElementsPartie obj1 = new ElementsPartie(joueurs,obj,plateau,pieceHp);
 		obj1.insertionPieceLibre(IG.attendreChoixEntree());
 		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
