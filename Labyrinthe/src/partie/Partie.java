@@ -205,10 +205,10 @@ public class Partie {
 					IG.changerObjetJoueurAvecTransparence(i, elementsPartie.getJoueurs()[i].getObjetsJoueur()[objRecup].getNumeroObjet(), objRecup);
 					
 					IG.enleverObjetPlateau(objTest.getPosLignePlateau(),objTest.getPosColonnePlateau());//enlever graphiquement l'objet du plateau
+					
 					//set les coo a -1 -1 et la variable surPlateau a false
-
-					elementsPartie.getJoueurs()[i].getObjetsJoueur()[elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes()].enleveDuPlateau();					
-					elementsPartie.getJoueurs()[i].recupererObjet();
+					elementsPartie.getJoueurs()[i].getObjetsJoueur()[elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes()].enleveDuPlateau();
+					elementsPartie.getJoueurs()[i].recupererObjet();//passage à l'objet suivant du joueur i
 					IG.miseAJourAffichage();
 				}
 				
@@ -235,6 +235,10 @@ public class Partie {
 		else if (j2Win) IG.afficherGagnant(1);
 		else IG.afficherGagnant(2);
 		IG.miseAJourAffichage();
+		IG.attendreClic();
+		IG.enleverGagnant();
+		IG.fermerFenetreJeu();
+		System.exit(0);
 		
 	}
 
