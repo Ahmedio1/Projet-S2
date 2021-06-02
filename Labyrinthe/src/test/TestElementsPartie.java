@@ -91,8 +91,14 @@ public class TestElementsPartie {
 				}
 			}
 		IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
-		
+		for (int i=0;i<nbJoueurs;i++) {
+			IG.placerJoueurSurPlateau(i,joueurs[i].getPosLigne(),joueurs[i].getPosColonne());
+			IG.changerImageJoueur(i, joueurs[i].getNumeroImagePersonnage());
+			IG.changerNomJoueur(i, joueurs[i].getNomJoueur()+" ("+joueurs[i].getCategorie()+")");
+			
+		}
 		IG.miseAJourAffichage();
+		
 	/*else if(IG.recupererModelePieceHorsPlateau()==1) {
 		Piece pieceHp = new PieceM1();
 		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
