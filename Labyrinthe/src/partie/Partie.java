@@ -98,8 +98,8 @@ public class Partie {
 		boolean j1Win=false, j2Win=false, j3Win=false;
 		while (!j1Win && !j2Win && !j3Win) { //on boucle tant que personne n'a gagne
 			for (int i=0;i<elementsPartie.getNombreJoueurs();i++) {
-				boolean possible=false;
 				
+				//selection de la fleche
 				String[] mess={
 						"Au tour de "+elementsPartie.getJoueurs()[i].getNomJoueur(),
 						"Sélectionner une flèche ..."
@@ -124,7 +124,14 @@ public class Partie {
 						IG.changerPiecePlateau(k,j,elementsPartie.getPlateau().getPiece(k,j).getModelePiece(),elementsPartie.getPlateau().getPiece(k, j).getOrientationPiece());
 						}
 					}
+				
+				//changer la piece hors plateau
 				IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
+				
+				//déplacement du joueur
+				for (int j=0;j<elementsPartie.getNombreJoueurs();j++) {
+					IG.placerJoueurSurPlateau(j,elementsPartie.getJoueurs()[j].getPosLigne(),elementsPartie.getJoueurs()[j].getPosColonne());
+				}
 				
 				IG.miseAJourAffichage();
 				
@@ -142,7 +149,7 @@ public class Partie {
 				IG.afficherMessage(message);
 				IG.miseAJourAffichage();
 				
-				
+				boolean possible=false;
 				while (possible==false) { //boucle permettant d'obliger le joueur a cliquer sur une case ou il  peut se deplacer
 					//deplacement des persos
 					int[] caseTarget=elementsPartie.getJoueurs()[i].choisirCaseArrivee(null);
@@ -155,6 +162,7 @@ public class Partie {
 						if (i==0)IG.placerJoueurPrecis(i, caseTarget[0], caseTarget[1], 0, 2);
 						else if (i==1)IG.placerJoueurPrecis(i, caseTarget[0], caseTarget[1], 2, 2);
 						else if (i==2)IG.placerJoueurPrecis(i, caseTarget[0], caseTarget[1], 2, 0);
+						elementsPartie.getJoueurs()[i].setPosition(caseTarget[0], caseTarget[1]);
 						
 						//affichage du chemin a l'aide des billes
 						int j=0;
@@ -173,14 +181,26 @@ public class Partie {
 				//permettre aux joueur de recuperer l'objet si il est sur la case de celui-ci et qu'il s'agit du bonne objet
 				Objet objTest=elementsPartie.getJoueurs()[i].getProchainObjet();
 				if (objTest.getPosLignePlateau()==elementsPartie.getJoueurs()[i].getPosLigne()
-					&& objTest.getPosLignePlateau()==elementsPartie.getJoueurs()[i].getPosLigne()) {
+					&& objTest.getPosColonnePlateau()==elementsPartie.getJoueurs()[i].getPosColonne()) {
 					
 					int objRecup=elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes();
 					IG.changerObjetJoueurAvecTransparence(i, elementsPartie.getJoueurs()[i].getObjetsJoueur()[objRecup].getNumeroObjet(), objRecup);
 					elementsPartie.getJoueurs()[i].recupererObjet();
+					IG.enleverObjetPlateau(objTest.getPosLignePlateau(),	objTest.getPosColonnePlateau());
+					IG.miseAJourAffichage();
+				}
+				
+				//test de win
+				if (elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes()==elementsPartie.getJoueurs()[i].getObjetsJoueur().length) {
+					if (i==0)j1Win=true;
+					else if (i==1)j2Win=true;
+					else j3Win=true;
 				}
 			}
+			for (int i=0;i<49;i++) IG.supprimerBilleSurPlateau(i/7, i%7, 2, 2);
 		}
+		
+		
 	}
 
 	/**

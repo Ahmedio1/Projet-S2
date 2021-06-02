@@ -47,6 +47,7 @@ public class TestElementsPartie {
 		IG.changerNomJoueur(i, joueurs[i].getNomJoueur()+" ("+joueurs[i].getCategorie()+")");
 		
 	}
+	
 	Objet[] obj=Objet.nouveauxObjets();
 	for (int i=0;i<obj.length;i++) {
 		IG.placerObjetPlateau(obj[i].getNumeroObjet(), obj[i].getPosLignePlateau(), obj[i].getPosColonnePlateau());
@@ -93,8 +94,6 @@ public class TestElementsPartie {
 		IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
 		for (int i=0;i<nbJoueurs;i++) {
 			IG.placerJoueurSurPlateau(i,joueurs[i].getPosLigne(),joueurs[i].getPosColonne());
-			IG.changerImageJoueur(i, joueurs[i].getNumeroImagePersonnage());
-			IG.changerNomJoueur(i, joueurs[i].getNomJoueur()+" ("+joueurs[i].getCategorie()+")");
 			
 		}
 		IG.miseAJourAffichage();
