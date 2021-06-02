@@ -94,7 +94,16 @@ public class TestElementsPartie {
 		IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
 		for (int i=0;i<nbJoueurs;i++) {
 			IG.placerJoueurSurPlateau(i,joueurs[i].getPosLigne(),joueurs[i].getPosColonne());
-			
+		}
+		
+		//retirer objet 
+		for (int i=0;i<49;i++) {
+			IG.enleverObjetPlateau(i/7,i%7 );
+		}
+		
+		//mettre objet
+		for (int i=0;i<18;i++) {
+			IG.placerObjetPlateau(obj[i].getNumeroObjet(), obj[i].getPosLignePlateau(), obj[i].getPosColonnePlateau());
 		}
 		IG.miseAJourAffichage();
 		

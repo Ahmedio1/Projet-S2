@@ -136,6 +136,16 @@ public class Partie {
 				for (int j=0;j<elementsPartie.getNombreJoueurs();j++) {
 					IG.placerJoueurSurPlateau(j,elementsPartie.getJoueurs()[j].getPosLigne(),elementsPartie.getJoueurs()[j].getPosColonne());
 				}
+				//suppression de tout les objets
+				for (int j=0;j<49;j++) {
+					IG.enleverObjetPlateau(j/7,j%7 );
+				}
+				
+				//replacer les objets
+				for (int j=0;j<18;j++) {
+					IG.placerObjetPlateau(elementsPartie.getObjets()[j].getNumeroObjet(), elementsPartie.getObjets()[j].getPosLignePlateau(), elementsPartie.getObjets()[j].getPosColonnePlateau());
+				}
+				
 				
 				IG.miseAJourAffichage();
 				
@@ -191,7 +201,7 @@ public class Partie {
 					int objRecup=elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes();
 					IG.changerObjetJoueurAvecTransparence(i, elementsPartie.getJoueurs()[i].getObjetsJoueur()[objRecup].getNumeroObjet(), objRecup);
 					elementsPartie.getJoueurs()[i].recupererObjet();
-					IG.enleverObjetPlateau(objTest.getPosLignePlateau(),	objTest.getPosColonnePlateau());
+					IG.enleverObjetPlateau(objTest.getPosLignePlateau(),objTest.getPosColonnePlateau());
 					IG.miseAJourAffichage();
 				}
 				

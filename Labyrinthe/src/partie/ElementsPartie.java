@@ -176,12 +176,15 @@ public class ElementsPartie {
     			else {
     			joueurs[j].setPosition(joueurs[j].getPosLigne()+1, choixEntree);
     			}
-    	}}
+    		}
+    	}
         //OBJET
-        for (int j=0;j<18/joueurs.length;j++) {
+        for (int j=0;j<18;j++) {
         	if (objets[j].getPosColonnePlateau()==choixEntree) {
         		if(objets[j].getPosLignePlateau()==6) {
-
+        			objets[j].positionneObjet(0, objets[j].getPosColonnePlateau());
+        		}else {
+        			objets[j].positionneObjet(objets[j].getPosLignePlateau()+1, objets[j].getPosColonnePlateau());
         		}
         	}
         }
@@ -191,11 +194,11 @@ public class ElementsPartie {
         }else if ( choixEntree >= 7 && choixEntree <14){
             // de haut en bas droite vers la gauche
             Piece tmp = plateau.getPiece(choixEntree-7,0);
-            for (int i = 6;i>=0;i--){
+            for (int i = 5;i>0;i--){
                  tab[i]=plateau.getPiece((choixEntree-7),i);
                  
                  }
-            for (int i = 6;i>0;i--){
+            for (int i = 5;i>0;i--){
                  plateau.positionnePiece(tab[i],choixEntree-7,i-1);
                  }
             this.plateau.positionnePiece(pieceLibre,choixEntree-7,6);
@@ -209,16 +212,27 @@ public class ElementsPartie {
         			else {
         			joueurs[j].setPosition(choixEntree-7, joueurs[j].getPosColonne()-1);
         			}
-        	}}
+        		}
+        	}
+            //Objet
+            for (int j=0;j<18;j++) {
+            	if (objets[j].getPosLignePlateau()==choixEntree-7) {
+            		if(objets[j].getPosColonnePlateau()==0) {
+            			objets[j].positionneObjet(objets[j].getPosLignePlateau(), 6);
+            		}else {
+            			objets[j].positionneObjet(objets[j].getPosLignePlateau(), objets[j].getPosColonnePlateau()-1);
+            		}
+            	}
+            }
 
         } else if (choixEntree < 21) {
-            // de droite a gauche et de bas en haut
-            Piece tmp = this.plateau.getPiece(6, 6-choixEntree%7);
-            for (int i = 6; i >=0; i--) {
+            //bas en haut
+            Piece tmp = this.plateau.getPiece(0, 6-choixEntree%7);
+            for (int i = 5; i >0; i--) {
                tab[i]=plateau.getPiece(i, 6-choixEntree%7);
               
             }
-            for (int i = 6;i>0;i--){
+            for (int i = 5;i>0;i--){
                 plateau.positionnePiece(tab[i],i-1,6-choixEntree%7);
                 }
             plateau.positionnePiece(pieceLibre, 6,6-choixEntree%7);
@@ -231,11 +245,22 @@ public class ElementsPartie {
         			}
         			else {
         			joueurs[j].setPosition(joueurs[j].getPosLigne()-1,6-choixEntree%7);}
-        	}}
+        		}
+        	}
+            //Objet
+            for (int j=0;j<18;j++) {
+            	if (objets[j].getPosColonnePlateau()==6-choixEntree%7) {
+            		if(objets[j].getPosLignePlateau()==0) {
+            			objets[j].positionneObjet(6, objets[j].getPosColonnePlateau());
+            		}else {
+            			objets[j].positionneObjet(objets[j].getPosLignePlateau()-1, objets[j].getPosColonnePlateau());
+            		}
+            	}
+            }
 
         }else{
             // bas en haut et de gauche a droite
-            Piece tmp = plateau.getPiece(6-choixEntree%7,0);
+            Piece tmp = plateau.getPiece(6-choixEntree%7,6);
             for (int i = 0;i<6;i++){
                tab[i]=plateau.getPiece(6-choixEntree%7,i);
             }
@@ -252,7 +277,18 @@ public class ElementsPartie {
         			}
         			else {
         			joueurs[j].setPosition(6-choixEntree%7, joueurs[j].getPosColonne()+1);}
-        	}}
+        		}
+        	}
+          //Objet
+            for (int j=0;j<18;j++) {
+            	if (objets[j].getPosLignePlateau()==6-choixEntree%7) {
+            		if(objets[j].getPosColonnePlateau()==6) {
+            			objets[j].positionneObjet(objets[j].getPosLignePlateau(), 0);
+            		}else {
+            			objets[j].positionneObjet(objets[j].getPosLignePlateau(), objets[j].getPosColonnePlateau()+1);
+            		}
+            	}
+            }
 
         }
     }
