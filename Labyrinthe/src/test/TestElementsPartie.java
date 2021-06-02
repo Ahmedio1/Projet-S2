@@ -74,8 +74,14 @@ public class TestElementsPartie {
 	IG.afficherMessage(messagefleche); 
 	IG.miseAJourAffichage();
 	for (int l=0;l<4;l++) {
-	if (IG.recupererModelePieceHorsPlateau()==0) {
-		Piece pieceHp = new PieceM0();
+		Piece pieceHp=null;
+		if (IG.recupererModelePieceHorsPlateau()==0) {
+			pieceHp = new PieceM0();
+		}else if(IG.recupererModelePieceHorsPlateau()==1) {
+			pieceHp = new PieceM1();
+		}else if(IG.recupererModelePieceHorsPlateau()==2) {
+			pieceHp = new PieceM2();
+		}
 		ElementsPartie obj1 = new ElementsPartie(joueurs,obj,plateau,pieceHp);
 		obj1.insertionPieceLibre(IG.attendreChoixEntree());
 		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
@@ -87,12 +93,11 @@ public class TestElementsPartie {
 		IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
 		
 		IG.miseAJourAffichage();
-	}
-	else if(IG.recupererModelePieceHorsPlateau()==1) {
+	/*else if(IG.recupererModelePieceHorsPlateau()==1) {
 		Piece pieceHp = new PieceM1();
+		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
 		ElementsPartie obj1 = new ElementsPartie(joueurs,obj,plateau,pieceHp);
 		obj1.insertionPieceLibre(IG.attendreChoixEntree());
-		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {
 				IG.changerPiecePlateau(i,j,plateau.getPiece(i,j).getModelePiece(),plateau.getPiece(i, j).getOrientationPiece());
@@ -104,9 +109,9 @@ public class TestElementsPartie {
 	}
 	else if(IG.recupererModelePieceHorsPlateau()==2) {
 		Piece pieceHp = new PieceM2();
+		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
 		ElementsPartie obj1 = new ElementsPartie(joueurs,obj,plateau,pieceHp);
 		obj1.insertionPieceLibre(IG.attendreChoixEntree());
-		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
 		for (int i=0;i<7;i++) {
 			for (int j=0;j<7;j++) {
 				IG.changerPiecePlateau(i,j,plateau.getPiece(i,j).getModelePiece(),plateau.getPiece(i, j).getOrientationPiece());
@@ -115,7 +120,7 @@ public class TestElementsPartie {
 		IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
 		
 		IG.miseAJourAffichage();
-	}
+	}*/
 	
 
 	}
