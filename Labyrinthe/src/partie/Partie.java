@@ -100,45 +100,50 @@ public class Partie {
 			for (int i=0;i<elementsPartie.getNombreJoueurs();i++) {
 				boolean possible=false;
 				
-					String[] mess={
-							"Au tour de "+elementsPartie.getJoueurs()[i].getNomJoueur(),
-							"Sélectionner une case ..."
-					};
-					IG.afficherMessage(mess);
-					IG.miseAJourAffichage();
-					
-					//introduction de la piece hors plateau
-					Piece pieceHp=null;
-					if (IG.recupererModelePieceHorsPlateau()==0) {
-						pieceHp = new PieceM0();
-					}else if(IG.recupererModelePieceHorsPlateau()==1) {
-						pieceHp = new PieceM1();
-					}else if(IG.recupererModelePieceHorsPlateau()==2) {
-						pieceHp = new PieceM2();
-					}
-					ElementsPartie obj1 = new ElementsPartie(elementsPartie.getJoueurs(),elementsPartie.getObjets(),elementsPartie.getPlateau(),pieceHp);
-					obj1.insertionPieceLibre(IG.attendreChoixEntree());
-					pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
-					for (int k=0;k<7;k++) {
-						for (int j=0;j<7;j++) {
-							IG.changerPiecePlateau(k,j,elementsPartie.getPlateau().getPiece(k,j).getModelePiece(),elementsPartie.getPlateau().getPiece(k, j).getOrientationPiece());
-							}
+				String[] mess={
+						"Au tour de "+elementsPartie.getJoueurs()[i].getNomJoueur(),
+						"Sélectionner une flèche ..."
+				};
+				IG.afficherMessage(mess);
+				IG.miseAJourAffichage();
+				
+				//introduction de la piece hors plateau
+				Piece pieceHp=null;
+				if (IG.recupererModelePieceHorsPlateau()==0) {
+					pieceHp = new PieceM0();
+				}else if(IG.recupererModelePieceHorsPlateau()==1) {
+					pieceHp = new PieceM1();
+				}else if(IG.recupererModelePieceHorsPlateau()==2) {
+					pieceHp = new PieceM2();
+				}
+				ElementsPartie obj1 = new ElementsPartie(elementsPartie.getJoueurs(),elementsPartie.getObjets(),elementsPartie.getPlateau(),pieceHp);
+				obj1.insertionPieceLibre(IG.attendreChoixEntree());
+				pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
+				for (int k=0;k<7;k++) {
+					for (int j=0;j<7;j++) {
+						IG.changerPiecePlateau(k,j,elementsPartie.getPlateau().getPiece(k,j).getModelePiece(),elementsPartie.getPlateau().getPiece(k, j).getOrientationPiece());
 						}
-					IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
-					
-					IG.miseAJourAffichage();
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					while (possible==false) { //boucle permettant d'obliger le joueur a cliquer sur une case ou il  peut se deplacer
+					}
+				IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
+				
+				IG.miseAJourAffichage();
+				
+				
+				
+				
+				
+				
+				
+				
+				String[] message={
+						"Au tour de "+elementsPartie.getJoueurs()[i].getNomJoueur(),
+						"Sélectionner une case ..."
+				};
+				IG.afficherMessage(message);
+				IG.miseAJourAffichage();
+				
+				
+				while (possible==false) { //boucle permettant d'obliger le joueur a cliquer sur une case ou il  peut se deplacer
 					//deplacement des persos
 					int[] caseTarget=elementsPartie.getJoueurs()[i].choisirCaseArrivee(null);
 					int[][] chemin=elementsPartie.getPlateau().calculeChemin(elementsPartie.getJoueurs()[i].getPosLigne(), elementsPartie.getJoueurs()[i].getPosColonne(), caseTarget[0],caseTarget[1]);
@@ -165,6 +170,7 @@ public class Partie {
 						IG.miseAJourAffichage();
 					}
 				}
+				//permettre aux joueur de recuperer l'objet si il est sur la case de celui-ci et qu'il s'agit du bonne objet
 				Objet objTest=elementsPartie.getJoueurs()[i].getProchainObjet();
 				if (objTest.getPosLignePlateau()==elementsPartie.getJoueurs()[i].getPosLigne()
 					&& objTest.getPosLignePlateau()==elementsPartie.getJoueurs()[i].getPosLigne()) {
