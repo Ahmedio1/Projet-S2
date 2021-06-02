@@ -169,7 +169,7 @@ public class ElementsPartie {
             pieceLibre = tmp;
             //JOUEURS
         for (int j=0;j<nombreJoueurs;j++) {
-    		if (joueurs[j].getPosColonne()==choixEntree) {//AHMED LE BEUBEULE //AHMED EST TROP SMART
+    		if (joueurs[j].getPosColonne()==choixEntree) {
     			if (joueurs[j].getPosLigne()==6) {
     				joueurs[j].setPosition(0, choixEntree);
     			}
@@ -205,7 +205,7 @@ public class ElementsPartie {
             pieceLibre = tmp;
             //JOUEURS
             for (int j=0;j<nombreJoueurs;j++) {
-        		if (joueurs[j].getPosLigne()==choixEntree-7) {//AHMED LE BEUBEULE //AHMED EST TROP SMART
+        		if (joueurs[j].getPosLigne()==choixEntree-7) {
         			if (joueurs[j].getPosColonne()==0) {
         				joueurs[j].setPosition(choixEntree-7, 6);
         			}
@@ -239,7 +239,7 @@ public class ElementsPartie {
             pieceLibre=tmp;
             //JOUEURS
             for (int j=0;j<nombreJoueurs;j++) {
-        		if (joueurs[j].getPosColonne()==6-choixEntree%7) {//AHMED LE BEUBEULE //AHMED EST TROP SMART
+        		if (joueurs[j].getPosColonne()==6-choixEntree%7) {
         			if (joueurs[j].getPosLigne()==0) {
         				joueurs[j].setPosition(6, 6-choixEntree%7);
         			}
@@ -271,7 +271,7 @@ public class ElementsPartie {
             pieceLibre = tmp;
             //JOUEURS
             for (int j=0;j<nombreJoueurs;j++) {
-        		if (joueurs[j].getPosLigne()==6-choixEntree%7) {//AHMED LE BEUBEULE //AHMED EST TROP SMART
+        		if (joueurs[j].getPosLigne()==6-choixEntree%7) {
         			if (joueurs[j].getPosColonne()==6) {
         				joueurs[j].setPosition(6-choixEntree%7, 0);
         			}

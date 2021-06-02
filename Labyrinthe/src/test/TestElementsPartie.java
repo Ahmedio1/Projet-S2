@@ -107,34 +107,6 @@ public class TestElementsPartie {
 		}
 		IG.miseAJourAffichage();
 		
-	/*else if(IG.recupererModelePieceHorsPlateau()==1) {
-		Piece pieceHp = new PieceM1();
-		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
-		ElementsPartie obj1 = new ElementsPartie(joueurs,obj,plateau,pieceHp);
-		obj1.insertionPieceLibre(IG.attendreChoixEntree());
-		for (int i=0;i<7;i++) {
-			for (int j=0;j<7;j++) {
-				IG.changerPiecePlateau(i,j,plateau.getPiece(i,j).getModelePiece(),plateau.getPiece(i, j).getOrientationPiece());
-				}
-			}
-		IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
-		
-		IG.miseAJourAffichage();
-	}
-	else if(IG.recupererModelePieceHorsPlateau()==2) {
-		Piece pieceHp = new PieceM2();
-		pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
-		ElementsPartie obj1 = new ElementsPartie(joueurs,obj,plateau,pieceHp);
-		obj1.insertionPieceLibre(IG.attendreChoixEntree());
-		for (int i=0;i<7;i++) {
-			for (int j=0;j<7;j++) {
-				IG.changerPiecePlateau(i,j,plateau.getPiece(i,j).getModelePiece(),plateau.getPiece(i, j).getOrientationPiece());
-				}
-			}
-		IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
-		
-		IG.miseAJourAffichage();
-	}*/
 	
 
 	}
