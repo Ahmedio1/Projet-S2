@@ -99,7 +99,7 @@ public class Partie {
 		while (!j1Win && !j2Win && !j3Win) { //on boucle tant que personne n'a gagne
 			for (int i=0;i<elementsPartie.getNombreJoueurs();i++) {
 				boolean possible=false;
-				while (possible==false) { //boucle permettant d'obliger le joueur a cliquer sur une case ou il  peut se deplacer
+				
 					String[] mess={
 							"Au tour de "+elementsPartie.getJoueurs()[i].getNomJoueur(),
 							"Sélectionner une case ..."
@@ -138,7 +138,7 @@ public class Partie {
 					
 					
 					
-					
+					while (possible==false) { //boucle permettant d'obliger le joueur a cliquer sur une case ou il  peut se deplacer
 					//deplacement des persos
 					int[] caseTarget=elementsPartie.getJoueurs()[i].choisirCaseArrivee(null);
 					int[][] chemin=elementsPartie.getPlateau().calculeChemin(elementsPartie.getJoueurs()[i].getPosLigne(), elementsPartie.getJoueurs()[i].getPosColonne(), caseTarget[0],caseTarget[1]);
@@ -168,8 +168,10 @@ public class Partie {
 				Objet objTest=elementsPartie.getJoueurs()[i].getProchainObjet();
 				if (objTest.getPosLignePlateau()==elementsPartie.getJoueurs()[i].getPosLigne()
 					&& objTest.getPosLignePlateau()==elementsPartie.getJoueurs()[i].getPosLigne()) {
+					
+					int objRecup=elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes();
+					IG.changerObjetJoueurAvecTransparence(i, elementsPartie.getJoueurs()[i].getObjetsJoueur()[objRecup].getNumeroObjet(), objRecup);
 					elementsPartie.getJoueurs()[i].recupererObjet();
-					IG.changerObjetJoueurAvecTransparence(i, elementsPartie.getObjets(), i);
 				}
 			}
 		}

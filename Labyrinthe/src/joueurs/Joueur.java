@@ -136,7 +136,7 @@ public abstract class Joueur {
 	}
 
 	/**
-	 * A Faire (AD le 20/05/2021 Finis)
+	 * A Faire (CD le 02/06/2021 Finis)
 	 * 
 	 * Methode permettant d'affecter au joueur les objets qu'il devra recuperer durant le jeu.
 	 * Attention : cette methode devra creer un nouveau tableau pour l'attribut this.objetsARecuperer.
@@ -144,10 +144,9 @@ public abstract class Joueur {
 	 * @param objetsARecuperer Un tableau contenant les objets à  recuperer dans l'ordre.
 	 */
 	public void setObjetsJoueur(Objet objetsARecuperer[]){
-		Objet tabRecup[];
-		tabRecup = new Objet[6];
-		for(int i=0;i<6;i++) {
-			tabRecup[i]=objetsARecuperer[i];	
+		objetsJoueur=new Objet[objetsARecuperer.length];
+		for(int i=0;i<objetsARecuperer.length;i++) {
+			objetsJoueur[i]=objetsARecuperer[i];
 		}
 		
 	}
@@ -162,8 +161,8 @@ public abstract class Joueur {
 	 */
 	public Objet[] getObjetsJoueur(){
 		Objet resultat[];
-		resultat = new Objet[6];
-		for(int i=0;i<6;i++) {
+		resultat = new Objet[objetsJoueur.length];
+		for(int i=0;i<objetsJoueur.length;i++) {
 			resultat[i]=this.objetsJoueur[i];	
 		}
 	
