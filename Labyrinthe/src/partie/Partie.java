@@ -141,7 +141,6 @@ public class Partie {
 				}
 				
 				//replacer les objets
-
 				for (int j=0;j<elementsPartie.getNombreJoueurs();j++) {
 					for (int k=elementsPartie.getJoueurs()[j].getNombreObjetsRecuperes();k<18/elementsPartie.getNombreJoueurs();k++) {
 						if (elementsPartie.getJoueurs()[j].getObjetsJoueur()[k].surPlateau()) {
@@ -202,11 +201,14 @@ public class Partie {
 				if (objTest.getPosLignePlateau()==elementsPartie.getJoueurs()[i].getPosLigne()
 					&& objTest.getPosColonnePlateau()==elementsPartie.getJoueurs()[i].getPosColonne()) {
 					
-					int objRecup=elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes();//num de l'objet recup
+					int objRecup=elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes();//nombre d'objet recup
 					IG.changerObjetJoueurAvecTransparence(i, elementsPartie.getJoueurs()[i].getObjetsJoueur()[objRecup].getNumeroObjet(), objRecup);
-					elementsPartie.getJoueurs()[i].recupererObjet();
+					
 					IG.enleverObjetPlateau(objTest.getPosLignePlateau(),objTest.getPosColonnePlateau());//enlever graphiquement l'objet du plateau
-					elementsPartie.getObjets()[objTest.getNumeroObjet()].enleveDuPlateau();//set les coo a -1 -1
+					//set les coo a -1 -1 et la variable surPlateau a false
+
+					elementsPartie.getJoueurs()[i].getObjetsJoueur()[elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes()].enleveDuPlateau();					
+					elementsPartie.getJoueurs()[i].recupererObjet();
 					IG.miseAJourAffichage();
 				}
 				

@@ -74,7 +74,7 @@ public class TestElementsPartie {
 };
 	IG.afficherMessage(messagefleche); 
 	IG.miseAJourAffichage();
-	for (int l=0;l<4;l++) {
+	for (int l=0;l<5000;l++) {
 		Piece pieceHp=null;
 		if (IG.recupererModelePieceHorsPlateau()==0) {
 			pieceHp = new PieceM0();
