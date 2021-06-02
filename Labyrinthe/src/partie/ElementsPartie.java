@@ -152,18 +152,41 @@ public class ElementsPartie {
      * @param choixEntree L'entrÃ©e choisie pour rÃ©aliser l'insertion (un nombre entre 0 et 27).
      */
     public void insertionPieceLibre(int choixEntree){
+    	//PIECE
     	Piece tab[] = new Piece[7];
         // Debut en haut a gauche vers en haut a droite et de haut en bas
         if (choixEntree<7){
             Piece tmp = plateau.getPiece(6,choixEntree);
             for (int i = 0;i<6;i++){
             	tab[i]=plateau.getPiece(i, choixEntree);
+
             }
             for (int i = 0;i<6;i++){
             plateau.positionnePiece(tab[i],i+1,choixEntree);
+           
             }
-           plateau.positionnePiece(pieceLibre,0,choixEntree);
-           pieceLibre = tmp;
+            plateau.positionnePiece(pieceLibre,0,choixEntree);
+            pieceLibre = tmp;
+            //JOUEURS
+        for (int j=0;j<3;j++) {
+    		if (joueurs[j].getPosColonne()==choixEntree) {//AHMED LE BEUBEULE //AHMED EST TROP SMART
+    			if (joueurs[j].getPosLigne()==6) {
+    				joueurs[j].setPosition(0, choixEntree);
+    			}
+    			else {
+    			joueurs[j].setPosition(joueurs[j].getPosLigne()+1, choixEntree);
+    			}
+    	}}
+        //OBJET
+        for (int j=0;j<18/joueurs.length;j++) {
+        	if (objets[j].getPosColonnePlateau()==choixEntree) {
+        		if(objets[j].getPosLignePlateau()==6) {
+
+        		}
+        	}
+        }
+        
+
             
         }else if ( choixEntree >= 7 && choixEntree <14){
             // de haut en bas droite vers la gauche
@@ -177,6 +200,17 @@ public class ElementsPartie {
                  }
             this.plateau.positionnePiece(pieceLibre,choixEntree-7,6);
             pieceLibre = tmp;
+            //JOUEURS
+            for (int j=0;j<3;j++) {
+        		if (joueurs[j].getPosLigne()==choixEntree-7) {//AHMED LE BEUBEULE //AHMED EST TROP SMART
+        			if (joueurs[j].getPosColonne()==0) {
+        				joueurs[j].setPosition(choixEntree-7, 6);
+        			}
+        			else {
+        			joueurs[j].setPosition(choixEntree-7, joueurs[j].getPosColonne()-1);
+        			}
+        	}}
+
         } else if (choixEntree < 21) {
             // de droite a gauche et de bas en haut
             Piece tmp = this.plateau.getPiece(6, 6-choixEntree%7);
@@ -189,6 +223,16 @@ public class ElementsPartie {
                 }
             plateau.positionnePiece(pieceLibre, 6,6-choixEntree%7);
             pieceLibre=tmp;
+            //JOUEURS
+            for (int j=0;j<3;j++) {
+        		if (joueurs[j].getPosColonne()==6-choixEntree%7) {//AHMED LE BEUBEULE //AHMED EST TROP SMART
+        			if (joueurs[j].getPosLigne()==0) {
+        				joueurs[j].setPosition(6, 6-choixEntree%7);
+        			}
+        			else {
+        			joueurs[j].setPosition(joueurs[j].getPosLigne()-1,6-choixEntree%7);}
+        	}}
+
         }else{
             // bas en haut et de gauche a droite
             Piece tmp = plateau.getPiece(6-choixEntree%7,0);
@@ -200,6 +244,16 @@ public class ElementsPartie {
             }
             plateau.positionnePiece(pieceLibre,6-choixEntree%7,0);
             pieceLibre = tmp;
+            //JOUEURS
+            for (int j=0;j<3;j++) {
+        		if (joueurs[j].getPosLigne()==6-choixEntree%7) {//AHMED LE BEUBEULE //AHMED EST TROP SMART
+        			if (joueurs[j].getPosColonne()==6) {
+        				joueurs[j].setPosition(6-choixEntree%7, 0);
+        			}
+        			else {
+        			joueurs[j].setPosition(6-choixEntree%7, joueurs[j].getPosColonne()+1);}
+        	}}
+
         }
     }
 
