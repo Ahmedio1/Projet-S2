@@ -194,11 +194,11 @@ public class ElementsPartie {
         }else if ( choixEntree >= 7 && choixEntree <14){
             // de haut en bas droite vers la gauche
             Piece tmp = plateau.getPiece(choixEntree-7,0);
-            for (int i = 5;i>0;i--){
+            for (int i = 6;i>0;i--){
                  tab[i]=plateau.getPiece((choixEntree-7),i);
                  
                  }
-            for (int i = 5;i>0;i--){
+            for (int i = 6;i>0;i--){
                  plateau.positionnePiece(tab[i],choixEntree-7,i-1);
                  }
             this.plateau.positionnePiece(pieceLibre,choixEntree-7,6);
@@ -228,11 +228,11 @@ public class ElementsPartie {
         } else if (choixEntree < 21) {
             //bas en haut
             Piece tmp = this.plateau.getPiece(0, 6-choixEntree%7);
-            for (int i = 5; i >0; i--) {
+            for (int i = 6; i >0; i--) {
                tab[i]=plateau.getPiece(i, 6-choixEntree%7);
               
             }
-            for (int i = 5;i>0;i--){
+            for (int i = 6;i>0;i--){
                 plateau.positionnePiece(tab[i],i-1,6-choixEntree%7);
                 }
             plateau.positionnePiece(pieceLibre, 6,6-choixEntree%7);
