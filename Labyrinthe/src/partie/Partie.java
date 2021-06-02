@@ -99,13 +99,17 @@ public class Partie {
 		while (!j1Win && !j2Win && !j3Win) { //on boucle tant que personne n'a gagne
 			for (int i=0;i<elementsPartie.getNombreJoueurs();i++) {
 				
+				
 				//selection de la fleche
 				String[] mess={
+						"",
 						"Au tour de "+elementsPartie.getJoueurs()[i].getNomJoueur(),
 						"Sélectionner une flèche ..."
 				};
 				IG.afficherMessage(mess);
 				IG.miseAJourAffichage();
+				//suppression des billes lors du tour du joueur suivant
+				for (int l=0;l<49;l++) IG.supprimerBilleSurPlateau(l/7, l%7, 1, 1);
 				
 				//introduction de la piece hors plateau
 				Piece pieceHp=null;
@@ -143,6 +147,7 @@ public class Partie {
 				
 				
 				String[] message={
+						"",
 						"Au tour de "+elementsPartie.getJoueurs()[i].getNomJoueur(),
 						"Sélectionner une case ..."
 				};
@@ -195,11 +200,24 @@ public class Partie {
 					if (i==0)j1Win=true;
 					else if (i==1)j2Win=true;
 					else j3Win=true;
+					break; //permet de sortir prematurement de la boucle for
 				}
 			}
-			for (int i=0;i<49;i++) IG.supprimerBilleSurPlateau(i/7, i%7, 2, 2);
+			String[] message={
+					"",
+					"Cliquez pour passer",
+					"au tour suivant..."
+			};
+			IG.afficherMessage(message);
+			IG.miseAJourAffichage();
+			IG.attendreClic();
+			
 		}
 		
+		if (j1Win)IG.afficherGagnant(0);
+		else if (j2Win) IG.afficherGagnant(1);
+		else IG.afficherGagnant(2);
+		IG.miseAJourAffichage();
 		
 	}
 
