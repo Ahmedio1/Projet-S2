@@ -153,14 +153,20 @@ public class ElementsPartie {
      */
     public void insertionPieceLibre(int choixEntree){
     	Piece tab[] = new Piece[7];
+    	Joueur joue[]= new Joueur[3];
         // Debut en haut a gauche vers en haut a droite et de haut en bas
         if (choixEntree<7){
             Piece tmp = plateau.getPiece(6,choixEntree);
             for (int i = 0;i<6;i++){
             	tab[i]=plateau.getPiece(i, choixEntree);
+
             }
             for (int i = 0;i<6;i++){
             plateau.positionnePiece(tab[i],i+1,choixEntree);
+            for (int j=0;j<3;j++) {
+        		if (joueurs[j].getPosColonne()==choixEntree);
+        			joueurs[j].setPosition(i, choixEntree+1);
+        	}
             }
            plateau.positionnePiece(pieceLibre,0,choixEntree);
            pieceLibre = tmp;
