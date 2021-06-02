@@ -99,7 +99,6 @@ public class Partie {
 		while (!j1Win && !j2Win && !j3Win) { //on boucle tant que personne n'a gagne
 			for (int i=0;i<elementsPartie.getNombreJoueurs();i++) {
 				
-				
 				//selection de la fleche
 				String[] mess={
 						"",
@@ -142,10 +141,15 @@ public class Partie {
 				}
 				
 				//replacer les objets
-				for (int j=0;j<18;j++) {
-					IG.placerObjetPlateau(elementsPartie.getObjets()[j].getNumeroObjet(), elementsPartie.getObjets()[j].getPosLignePlateau(), elementsPartie.getObjets()[j].getPosColonnePlateau());
+
+				for (int j=0;j<elementsPartie.getNombreJoueurs();j++) {
+					for (int k=elementsPartie.getJoueurs()[j].getNombreObjetsRecuperes();k<18/elementsPartie.getNombreJoueurs();k++) {
+						if (elementsPartie.getJoueurs()[j].getObjetsJoueur()[k].surPlateau()) {
+							IG.placerObjetPlateau(elementsPartie.getJoueurs()[j].getObjetsJoueur()[k].getNumeroObjet(), elementsPartie.getJoueurs()[j].getObjetsJoueur()[k].getPosLignePlateau(),
+									elementsPartie.getJoueurs()[j].getObjetsJoueur()[k].getPosColonnePlateau());
+						}
+					}
 				}
-				
 				
 				IG.miseAJourAffichage();
 				
@@ -198,10 +202,11 @@ public class Partie {
 				if (objTest.getPosLignePlateau()==elementsPartie.getJoueurs()[i].getPosLigne()
 					&& objTest.getPosColonnePlateau()==elementsPartie.getJoueurs()[i].getPosColonne()) {
 					
-					int objRecup=elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes();
+					int objRecup=elementsPartie.getJoueurs()[i].getNombreObjetsRecuperes();//num de l'objet recup
 					IG.changerObjetJoueurAvecTransparence(i, elementsPartie.getJoueurs()[i].getObjetsJoueur()[objRecup].getNumeroObjet(), objRecup);
 					elementsPartie.getJoueurs()[i].recupererObjet();
-					IG.enleverObjetPlateau(objTest.getPosLignePlateau(),objTest.getPosColonnePlateau());
+					IG.enleverObjetPlateau(objTest.getPosLignePlateau(),objTest.getPosColonnePlateau());//enlever graphiquement l'objet du plateau
+					elementsPartie.getObjets()[objTest.getNumeroObjet()].enleveDuPlateau();//set les coo a -1 -1
 					IG.miseAJourAffichage();
 				}
 				
