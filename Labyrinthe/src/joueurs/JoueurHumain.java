@@ -63,6 +63,10 @@ public class JoueurHumain extends Joueur {
 		return nouveauJoueur;
 	}
 	
+	@Override
+	public int choisirEntreePiece(ElementsPartie plat) {
+		return IG.attendreChoixEntree();
+	}
 	
 
 }

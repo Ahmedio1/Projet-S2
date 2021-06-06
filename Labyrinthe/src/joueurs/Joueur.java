@@ -249,6 +249,19 @@ public abstract class Joueur {
 	 * @return Un tableau contenant deux entiers, le premier correspond à  la ligne de la case choisie, le second à  la colonne de la case choisie. 
 	 */
 	abstract public int[] choisirCaseArrivee(ElementsPartie elementsPartie);
+	
+	
+	/**
+	 * cette est appele losrque le joeueur doit choisir une fleche pour inserer la nouvelle piece
+	 * elle est implemente afin que les bots puissent eux aussi choisir ou placer la piece
+	 * 
+	 * NOTE: le code dans la classe Partie a ete changer en consequence mais celui des tests
+	 * 
+	 * @param elementsPartie Les elements de la partie.
+	 * @return un chiffre entre 0 et 27
+	 */
+	
+	abstract public int choisirEntreePiece(ElementsPartie plat);
 
 	
 	/**
