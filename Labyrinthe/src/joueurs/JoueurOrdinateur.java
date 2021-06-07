@@ -58,10 +58,12 @@ public abstract class JoueurOrdinateur extends Joueur {
 
 	
 	@Override
-	public int choisirEntreePiece(ElementsPartie plat) {
+	public int choisirOrientationEntree(ElementsPartie plat) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
 	
 
 }

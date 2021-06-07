@@ -52,8 +52,8 @@ public class JoueurOrdinateurT1 extends JoueurOrdinateur {
 	
 	@Override
 	public int choisirEntreePiece(ElementsPartie plat) {
-		for (int i=0;i<4;i++) {
-			for (int j=0;j<28;j++) {
+		for (int posPiece=0;posPiece<4;posPiece++) { //test pour chaque orientation
+			for (int arrow=0;arrow<28;arrow++) { //test pour chaque fleche
 				
 				Piece pieceHp=null;
 				if (IG.recupererModelePieceHorsPlateau()==0) {
@@ -63,21 +63,22 @@ public class JoueurOrdinateurT1 extends JoueurOrdinateur {
 				}else if(IG.recupererModelePieceHorsPlateau()==2) {
 					pieceHp = new PieceM2();
 				}
+				
 				ElementsPartie obj1 = new ElementsPartie(plat.getJoueurs(),plat.getObjets(),plat.getPlateau(),pieceHp);
-				obj1.insertionPieceLibre(plat.getJoueurs()[i].choisirEntreePiece(plat));
-				pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
+				obj1.insertionPieceLibre(arrow);
+				pieceHp.setOrientation((IG.recupererOrientationPieceHorsPlateau()+posPiece)%4);
 				for (int k=0;k<7;k++) {
 					for (int j=0;j<7;j++) {
-						IG.changerPiecePlateau(k,j,elementsPartie.getPlateau().getPiece(k,j).getModelePiece(),elementsPartie.getPlateau().getPiece(k, j).getOrientationPiece());
-						}
+						IG.changerPiecePlateau(k,j,plat.getPlateau().getPiece(k,j).getModelePiece(),plat.getPlateau().getPiece(k, j).getOrientationPiece());
 					}
+				}
 				
 				//changer la piece hors plateau
 				IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
 				
 				//déplacement du joueur
-				for (int j=0;j<elementsPartie.getNombreJoueurs();j++) {
-					IG.placerJoueurSurPlateau(j,elementsPartie.getJoueurs()[j].getPosLigne(),elementsPartie.getJoueurs()[j].getPosColonne());
+				for (int j=0;j<plat.getNombreJoueurs();j++) {
+					IG.placerJoueurSurPlateau(j,plat.getJoueurs()[j].getPosLigne(),plat.getJoueurs()[j].getPosColonne());
 				}
 				//suppression de tout les objets
 				for (int j=0;j<49;j++) {
@@ -85,13 +86,19 @@ public class JoueurOrdinateurT1 extends JoueurOrdinateur {
 				}
 				
 				//replacer les objets
-				for (int j=0;j<elementsPartie.getNombreJoueurs();j++) {
-					for (int k=elementsPartie.getJoueurs()[j].getNombreObjetsRecuperes();k<18/elementsPartie.getNombreJoueurs();k++) {
-						if (elementsPartie.getJoueurs()[j].getObjetsJoueur()[k].surPlateau()) {
-							IG.placerObjetPlateau(elementsPartie.getJoueurs()[j].getObjetsJoueur()[k].getNumeroObjet(), elementsPartie.getJoueurs()[j].getObjetsJoueur()[k].getPosLignePlateau(),
-									elementsPartie.getJoueurs()[j].getObjetsJoueur()[k].getPosColonnePlateau());
+				for (int j=0;j<plat.getNombreJoueurs();j++) {
+					for (int k=plat.getJoueurs()[j].getNombreObjetsRecuperes();k<18/plat.getNombreJoueurs();k++) {
+						if (plat.getJoueurs()[j].getObjetsJoueur()[k].surPlateau()) {
+							IG.placerObjetPlateau(plat.getJoueurs()[j].getObjetsJoueur()[k].getNumeroObjet(), plat.getJoueurs()[j].getObjetsJoueur()[k].getPosLignePlateau(),
+									plat.getJoueurs()[j].getObjetsJoueur()[k].getPosColonnePlateau());
 						}
 					}
+				}
+				//test de possibilite de recuperer l'objet
+				Objet objTest=super.getProchainObjet();
+				if (objTest.getPosLignePlateau()==super.getPosLigne()
+					&& objTest.getPosColonnePlateau()==super.getPosColonne()) {
+					
 				}
 			}
 		}
