@@ -51,7 +51,7 @@ public class JoueurOrdinateurT1 extends JoueurOrdinateur {
 	}
 	
 	@Override
-	public int choisirEntreePiece(ElementsPartie plat) {
+	public int[] choisirEntreePiece(ElementsPartie plat) {
 		for (int posPiece=0;posPiece<4;posPiece++) { //test pour chaque orientation
 			for (int arrow=0;arrow<28;arrow++) { //test pour chaque fleche
 				
@@ -96,9 +96,12 @@ public class JoueurOrdinateurT1 extends JoueurOrdinateur {
 				}
 				//test de possibilite de recuperer l'objet
 				Objet objTest=super.getProchainObjet();
-				if (objTest.getPosLignePlateau()==super.getPosLigne()
-					&& objTest.getPosColonnePlateau()==super.getPosColonne()) {
-					
+				if (objTest.getPosLignePlateau()==plat.getJoueurs()[j].getPosLigne()
+					&& objTest.getPosColonnePlateau()==plat.getJoueurs()[j].getPosColonne()) {
+					int[] retour=new int[2];
+					retour[0]=arrow;
+					retour[1]=posPiece;
+					return retour;
 				}
 			}
 		}

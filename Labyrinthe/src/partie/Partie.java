@@ -120,7 +120,9 @@ public class Partie {
 					pieceHp = new PieceM2();
 				}
 				ElementsPartie obj1 = new ElementsPartie(elementsPartie.getJoueurs(),elementsPartie.getObjets(),elementsPartie.getPlateau(),pieceHp);
-				obj1.insertionPieceLibre(elementsPartie.getJoueurs()[i].choisirEntreePiece(elementsPartie));
+				int[] choixEntres=new int[2];
+				choixEntres=elementsPartie.getJoueurs()[i].choisirEntreePiece(elementsPartie);
+				obj1.insertionPieceLibre(choixEntres[0]);
 				pieceHp.setOrientation(IG.recupererOrientationPieceHorsPlateau());
 				for (int k=0;k<7;k++) {
 					for (int j=0;j<7;j++) {

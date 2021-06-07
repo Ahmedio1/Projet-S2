@@ -1,5 +1,6 @@
 package joueurs;
 
+import composants.Utils;
 import grafix.interfaceGraphique.IG;
 import partie.ElementsPartie;
 
@@ -58,9 +59,10 @@ public abstract class JoueurOrdinateur extends Joueur {
 
 	
 	@Override
-	public int choisirOrientationEntree(ElementsPartie plat) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int[] choisirEntreePiece(ElementsPartie plat) {
+		int[] i=new int[2];
+		i[0]=Utils.genererEntier(27);
+		return i;
 	}
 	
 	

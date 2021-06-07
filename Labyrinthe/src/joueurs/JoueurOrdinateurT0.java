@@ -47,9 +47,10 @@ public class JoueurOrdinateurT0 extends JoueurOrdinateur {
 	}
 	
 	@Override
-	public int choisirEntreePiece(ElementsPartie plat) {
-		// TODO Auto-generated method stub
-		return 1;
+	public int[] choisirEntreePiece(ElementsPartie plat) {
+		int[] i=new int[2];
+		i[0]=1;
+		return i;
 	}
 
 }
