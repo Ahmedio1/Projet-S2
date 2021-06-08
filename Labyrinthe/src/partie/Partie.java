@@ -172,7 +172,7 @@ public class Partie {
 				boolean possible=false;
 				while (possible==false) { //boucle permettant d'obliger le joueur a cliquer sur une case ou il  peut se deplacer
 					//deplacement des persos
-					int[] caseTarget=elementsPartie.getJoueurs()[i].choisirCaseArrivee(null);
+					int[] caseTarget=elementsPartie.getJoueurs()[i].choisirCaseArrivee(elementsPartie);
 					int[][] chemin=elementsPartie.getPlateau().calculeChemin(elementsPartie.getJoueurs()[i].getPosLigne(), elementsPartie.getJoueurs()[i].getPosColonne(), caseTarget[0],caseTarget[1]);
 					
 					if (chemin!=null ||
@@ -222,6 +222,7 @@ public class Partie {
 					break; //permet de sortir prematurement de la boucle for
 				}
 			}
+			/*
 			String[] message={
 					"",
 					"Cliquez pour passer",
@@ -230,6 +231,7 @@ public class Partie {
 			IG.afficherMessage(message);
 			IG.miseAJourAffichage();
 			IG.attendreClic();
+			*/
 			
 		}
 		

@@ -51,10 +51,10 @@ public class JoueurOrdinateurT1 extends JoueurOrdinateur {
 	}
 	
 	@Override
-	public int[] choisirEntreePiece(ElementsPartie plat) {
+	public int[] choisirEntreePiece(ElementsPartie plateau) {
 		for (int posPiece=0;posPiece<4;posPiece++) { //test pour chaque orientation
 			for (int arrow=0;arrow<28;arrow++) { //test pour chaque fleche
-				
+				ElementsPartie plat=plateau.copy();
 				Piece pieceHp=null;
 				if (IG.recupererModelePieceHorsPlateau()==0) {
 					pieceHp = new PieceM0();
@@ -133,6 +133,6 @@ public class JoueurOrdinateurT1 extends JoueurOrdinateur {
 				}
 			}
 		}
-		return super.choisirEntreePiece(plat);
+		return super.choisirEntreePiece(plateau);
 	}
 }

@@ -61,7 +61,7 @@ public abstract class JoueurOrdinateur extends Joueur {
 	@Override
 	public int[] choisirEntreePiece(ElementsPartie plat) {
 		int[] i=new int[2];
-		i[0]=Utils.genererEntier(27);
+		i[0]=Utils.genererEntier(28);
 		return i;
 	}
 	
