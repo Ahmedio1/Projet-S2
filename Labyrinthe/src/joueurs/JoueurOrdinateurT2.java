@@ -110,9 +110,6 @@ public class JoueurOrdinateurT2 extends JoueurOrdinateur {
 									caseTarget[0]==super.getPosLigne()&&
 									caseTarget[1]==super.getPosColonne()) {
 								possible=true;
-								if (super.getNumJoueur()==0)IG.placerJoueurPrecis(super.getNumJoueur(), caseTarget[0], caseTarget[1], 0, 2);
-								else if (super.getNumJoueur()==1)IG.placerJoueurPrecis(super.getNumJoueur(), caseTarget[0], caseTarget[1], 2, 2);
-								else if (super.getNumJoueur()==2)IG.placerJoueurPrecis(super.getNumJoueur(), caseTarget[0], caseTarget[1], 2, 0);
 								super.setPosition(caseTarget[0], caseTarget[1]);
 								
 							}
