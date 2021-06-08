@@ -100,42 +100,36 @@ public class JoueurOrdinateurT1 extends JoueurOrdinateur {
 				boolean possible=false;
 				while (possible==false) { //boucle permettant d'obliger le joueur a cliquer sur une case ou il  peut se deplacer
 					//deplacement des persos
-					int[] caseTarget=elementsPartie.getJoueurs()[i].choisirCaseArrivee(null);
-					int[][] chemin=elementsPartie.getPlateau().calculeChemin(elementsPartie.getJoueurs()[i].getPosLigne(), elementsPartie.getJoueurs()[i].getPosColonne(), caseTarget[0],caseTarget[1]);
-					
-					if (chemin!=null ||
-							caseTarget[0]==elementsPartie.getJoueurs()[i].getPosLigne()&&
-							caseTarget[1]==elementsPartie.getJoueurs()[i].getPosColonne()) {
-						possible=true;
-						if (i==0)IG.placerJoueurPrecis(i, caseTarget[0], caseTarget[1], 0, 2);
-						else if (i==1)IG.placerJoueurPrecis(i, caseTarget[0], caseTarget[1], 2, 2);
-						else if (i==2)IG.placerJoueurPrecis(i, caseTarget[0], caseTarget[1], 2, 0);
-						elementsPartie.getJoueurs()[i].setPosition(caseTarget[0], caseTarget[1]);
-						
-						//affichage du chemin a l'aide des billes
-						int j=0;
-						if (chemin!=null) {
-							while (chemin[j]!=null) {
-								IG.placerBilleSurPlateau(chemin[j][0], chemin[j][1], 1, 1, i);
-								j++;
+					for (int i=0;i<plat.getNombreJoueurs();i++) {
+						for(int ligne=0;ligne<7;ligne++) {
+							for (int colonne=0;colonne<7;colonne++) {
+								int[] caseTarget=new int[2];
+								caseTarget[0]=ligne;
+								caseTarget[1]=colonne;
+								int[][] chemin=plat.getPlateau().calculeChemin(plat.getJoueurs()[i].getPosLigne(), plat.getJoueurs()[i].getPosColonne(), caseTarget[0],caseTarget[1]);
+								
+								if (chemin!=null ||
+										caseTarget[0]==plat.getJoueurs()[i].getPosLigne()&&
+										caseTarget[1]==plat.getJoueurs()[i].getPosColonne()) {
+									possible=true;
+									if (i==0)IG.placerJoueurPrecis(i, caseTarget[0], caseTarget[1], 0, 2);
+									else if (i==1)IG.placerJoueurPrecis(i, caseTarget[0], caseTarget[1], 2, 2);
+									else if (i==2)IG.placerJoueurPrecis(i, caseTarget[0], caseTarget[1], 2, 0);
+									plat.getJoueurs()[i].setPosition(caseTarget[0], caseTarget[1]);
+									
+								}
 							}
-						}else {
-							IG.placerBilleSurPlateau(elementsPartie.getJoueurs()[i].getPosLigne(), elementsPartie.getJoueurs()[i].getPosColonne(), 1, 1, i);
 						}
-						
-						IG.miseAJourAffichage();
 					}
-				}
-				
-				
-				//test de possibilite de recuperer l'objet
-				Objet objTest=super.getProchainObjet();
-				if (objTest.getPosLignePlateau()==super.getPosLigne()
-					&& objTest.getPosColonnePlateau()==super.getPosColonne()) {
-					int[] retour=new int[2];
-					retour[0]=arrow;
-					retour[1]=posPiece;
-					return retour;
+					//test de possibilite de recuperer l'objet
+					Objet objTest=super.getProchainObjet();
+					if (objTest.getPosLignePlateau()==super.getPosLigne()
+						&& objTest.getPosColonnePlateau()==super.getPosColonne()) {
+						int[] retour=new int[2];
+						retour[0]=arrow;
+						retour[1]=posPiece;
+						return retour;
+					}
 				}
 			}
 		}
