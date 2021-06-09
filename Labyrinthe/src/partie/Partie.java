@@ -98,6 +98,13 @@ public class Partie {
 		boolean j1Win=false, j2Win=false, j3Win=false;
 		while (!j1Win && !j2Win && !j3Win) { //on boucle tant que personne n'a gagne
 			for (int i=0;i<elementsPartie.getNombreJoueurs();i++) {
+				int millis = 500;
+
+				try {
+				    Thread.sleep(millis);
+				} catch (InterruptedException ie) {
+				    // ...
+				}
 				
 				//selection de la fleche
 				String[] mess={
