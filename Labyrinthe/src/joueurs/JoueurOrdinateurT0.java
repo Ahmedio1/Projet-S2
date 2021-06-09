@@ -53,10 +53,7 @@ public class JoueurOrdinateurT0 extends JoueurOrdinateur {
 	
 	@Override
 	public int[] choisirCaseArrivee(ElementsPartie elementsPartie) {
-		int[] i=new int[2];
-		i[0]=Utils.genererEntier(7);
-		i[1]=Utils.genererEntier(7);
-		return i;
+		return super.choisirCaseArrivee(elementsPartie);
 	}
 
 }

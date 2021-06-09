@@ -63,20 +63,20 @@ public class JoueurOrdinateurT1 extends JoueurOrdinateur {
 					int[] caseTarget=new int[2];
 					caseTarget[0]=ligne;
 					caseTarget[1]=colonne;
-					int[][] chemin=plat.getPlateau().calculeChemin(super.getPosLigne(), super.getPosColonne(), caseTarget[0],caseTarget[1]);
+					int[][] chemin=plat.getPlateau().calculeChemin(plat.getJoueurs()[super.getNumJoueur()].getPosLigne(), plat.getJoueurs()[super.getNumJoueur()].getPosColonne(), caseTarget[0],caseTarget[1]);
 					
 					if (chemin!=null ||
 							caseTarget[0]==super.getPosLigne()&&
 							caseTarget[1]==super.getPosColonne()) {
 						possible=true;
 
-						super.setPosition(caseTarget[0], caseTarget[1]);
+						plat.getJoueurs()[super.getNumJoueur()].setPosition(caseTarget[0], caseTarget[1]);
 						
 					}
 					//test de possibilite de recuperer l'objet
 					Objet objTest=super.getProchainObjet();
-					if (objTest.getPosLignePlateau()==super.getPosLigne()
-						&& objTest.getPosColonnePlateau()==super.getPosColonne()) {
+					if (objTest.getPosLignePlateau()==plat.getJoueurs()[super.getNumJoueur()].getPosLigne()
+						&& objTest.getPosColonnePlateau()==plat.getJoueurs()[super.getNumJoueur()].getPosColonne()) {
 						int[] retour=new int[2];
 						retour[0]=ligne;
 						retour[1]=colonne;

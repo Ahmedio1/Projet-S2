@@ -73,57 +73,16 @@ public class JoueurOrdinateurT2 extends JoueurOrdinateur {
 					}
 				}
 				
-				//changer la piece hors plateau
-				IG.changerPieceHorsPlateau(obj1.getPieceLibre().getModelePiece(),obj1.getPieceLibre().getOrientationPiece());
+
+				int[][] chemin=plat.getPlateau().calculeChemin(plat.getJoueurs()[super.getNumJoueur()].getPosLigne(), plat.getJoueurs()[super.getNumJoueur()].getPosColonne(), plat.getJoueurs()[super.getNumJoueur()].getProchainObjet().getPosLignePlateau(),plat.getJoueurs()[super.getNumJoueur()].getProchainObjet().getPosColonnePlateau());
 				
-				//déplacement du joueur
-				for (int j=0;j<plat.getNombreJoueurs();j++) {
-					IG.placerJoueurSurPlateau(j,plat.getJoueurs()[j].getPosLigne(),plat.getJoueurs()[j].getPosColonne());
-				}
-				//suppression de tout les objets
-				for (int j=0;j<49;j++) {
-					IG.enleverObjetPlateau(j/7,j%7 );
-				}
-				//replacer les objets
-				for (int j=0;j<plat.getNombreJoueurs();j++) {
-					for (int k=plat.getJoueurs()[j].getNombreObjetsRecuperes();k<18/plat.getNombreJoueurs();k++) {
-						if (plat.getJoueurs()[j].getObjetsJoueur()[k].surPlateau()) {
-							IG.placerObjetPlateau(plat.getJoueurs()[j].getObjetsJoueur()[k].getNumeroObjet(), plat.getJoueurs()[j].getObjetsJoueur()[k].getPosLignePlateau(),
-									plat.getJoueurs()[j].getObjetsJoueur()[k].getPosColonnePlateau());
-						}
-					}
-				}
-				
-				
-				
-				boolean possible=false;
-				while (possible==false) { //boucle permettant d'obliger le joueur a cliquer sur une case ou il  peut se deplacer
-					//deplacement des persos
-					for(int ligne=0;ligne<7;ligne++) {
-						for (int colonne=0;colonne<7;colonne++) {
-							int[] caseTarget=new int[2];
-							caseTarget[0]=ligne;
-							caseTarget[1]=colonne;
-							int[][] chemin=plat.getPlateau().calculeChemin(super.getPosLigne(), super.getPosColonne(), caseTarget[0],caseTarget[1]);
-							
-							if (chemin!=null ||
-									caseTarget[0]==super.getPosLigne()&&
-									caseTarget[1]==super.getPosColonne()) {
-								possible=true;
-								super.setPosition(caseTarget[0], caseTarget[1]);
-								
-							}
-						}
-					}
-					//test de possibilite de recuperer l'objet
-					Objet objTest=super.getProchainObjet();
-					if (objTest.getPosLignePlateau()==super.getPosLigne()
-						&& objTest.getPosColonnePlateau()==super.getPosColonne()) {
-						int[] retour=new int[2];
-						retour[0]=arrow;
-						retour[1]=posPiece;
-						return retour;
-					}
+				//test de possibilite de recuperer l'objet
+				if (chemin!=null) {
+					int[] retour=new int[2];
+					retour[0]=arrow;
+					retour[1]=posPiece;
+					return retour;
+					
 				}
 			}
 		}
@@ -142,24 +101,23 @@ public class JoueurOrdinateurT2 extends JoueurOrdinateur {
 					int[] caseTarget=new int[2];
 					caseTarget[0]=ligne;
 					caseTarget[1]=colonne;
-					int[][] chemin=plat.getPlateau().calculeChemin(super.getPosLigne(), super.getPosColonne(), caseTarget[0],caseTarget[1]);
+					int[][] chemin=plat.getPlateau().calculeChemin(plat.getJoueurs()[super.getNumJoueur()].getPosLigne(), plat.getJoueurs()[super.getNumJoueur()].getPosColonne(), caseTarget[0],caseTarget[1]);
 					
 					if (chemin!=null ||
 							caseTarget[0]==super.getPosLigne()&&
 							caseTarget[1]==super.getPosColonne()) {
 						possible=true;
 
-						super.setPosition(caseTarget[0], caseTarget[1]);
+						plat.getJoueurs()[super.getNumJoueur()].setPosition(caseTarget[0], caseTarget[1]);
 						
 					}
 					//test de possibilite de recuperer l'objet
 					Objet objTest=super.getProchainObjet();
-					if (objTest.getPosLignePlateau()==super.getPosLigne()
-						&& objTest.getPosColonnePlateau()==super.getPosColonne()) {
+					if (objTest.getPosLignePlateau()==plat.getJoueurs()[super.getNumJoueur()].getPosLigne()
+						&& objTest.getPosColonnePlateau()==plat.getJoueurs()[super.getNumJoueur()].getPosColonne()) {
 						int[] retour=new int[2];
-						retour[0]=ligne;
-						retour[1]=colonne;
-						System.out.println(ligne+" "+colonne);
+						retour[0]=plat.getJoueurs()[super.getNumJoueur()].getPosLigne();
+						retour[1]=plat.getJoueurs()[super.getNumJoueur()].getPosColonne();
 						return retour; //retourne la case et la colonne
 					}
 				}

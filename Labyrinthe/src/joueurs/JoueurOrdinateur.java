@@ -51,10 +51,10 @@ public abstract class JoueurOrdinateur extends Joueur {
 	 */
 	@Override
 	public int[] choisirCaseArrivee(ElementsPartie elementsPartie) {
-		int resultat[]=new int[2];
-		resultat[0]=this.getPosLigne();
-		resultat[1]=this.getPosColonne();
-		return resultat;
+		int[] i=new int[2];
+		i[0]=Utils.genererEntier(7);
+		i[1]=Utils.genererEntier(7);
+		return i;
 	}
 
 	
