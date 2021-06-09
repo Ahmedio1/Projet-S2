@@ -44,5 +44,20 @@ public class JoueurOrdinateurT3 extends JoueurOrdinateur {
 			nouveauJoueur.recupererObjet();
 		return nouveauJoueur;
 	}
+	
+	public int[] choisirCaseArrivee(ElementsPartie elementsPartie) {
+		int[] i=new int[2];
+		i[0]=super.getPosLigne();
+		i[1]=super.getPosColonne();
+		return i;
+	}
+
+	
+	@Override
+	public int[] choisirEntreePiece(ElementsPartie plat) {
+		int[] i=new int[2];
+		i[0]=13;
+		return i;
+	}
 
 }
