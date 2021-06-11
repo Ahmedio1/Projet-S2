@@ -3,7 +3,7 @@ package composants;
 
 /**
  * 
- * Cette classe permet de reprÃ©senter chacun des objets du jeu.
+ * Cette classe permet de représenter chacun des objets du jeu.
  *
  */
 public class Objet {
