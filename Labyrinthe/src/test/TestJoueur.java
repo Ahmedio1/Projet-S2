@@ -23,7 +23,7 @@ public class TestJoueur {
 		};
 		IG.afficherMessage(message);
 		
-		//génération du plateau
+		//gï¿½nï¿½ration du plateau
 		Plateau plateau=new Plateau();
 		Piece pieceHorsPlateau=plateau.placerPiecesAleatoierment();
 		
@@ -51,7 +51,7 @@ public class TestJoueur {
 			while (possible==false) {
 				String[] mess={
 						"Au tour de "+joueurs[i].getNomJoueur(),
-						"Sélectionner une case ..."
+						"SÃ©lectionner une case ..."
 				};
 				IG.afficherMessage(mess);
 				IG.miseAJourAffichage();
@@ -85,7 +85,7 @@ public class TestJoueur {
 		}
 		
 		String[] mess= {
-				"C'est terminé !",
+				"C'est terminÃ© !",
 				"Cliquer pour quitter ..."
 		};
 		IG.afficherMessage(mess);
